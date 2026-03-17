@@ -1,14 +1,14 @@
 'use client'
 
+import Image from 'next/image'
 import { motion } from 'framer-motion'
-import { Stethoscope, ShieldCheck, SlidersHorizontal, Check } from 'lucide-react'
+import { Check } from 'lucide-react'
 import { VORTEILE } from '@/lib/constants'
-import type { LucideIcon } from 'lucide-react'
 
-const ICONS: Record<string, LucideIcon> = {
-  'OP-Schutz': Stethoscope,
-  'Vollschutz': ShieldCheck,
-  'Flexible Selbstbeteiligung': SlidersHorizontal,
+const ICONS: Record<string, string> = {
+  'OP-Schutz': '/images/icons/stethoscope.jpg',
+  'Vollschutz': '/images/icons/health.jpg',
+  'Flexible Selbstbeteiligung': '/images/icons/moneybag.jpg',
 }
 
 export default function Vorteile() {
@@ -25,14 +25,19 @@ export default function Vorteile() {
           <h2 className="font-heading text-[1.625rem] md:text-[2.25rem] font-semibold text-brand-text">
             {VORTEILE.title}
           </h2>
-          <p className="mt-3 font-body text-base text-brand-grayMid">
+          <p className="mt-3 font-heading text-base text-brand-grayMid">
             {VORTEILE.subtitle}
           </p>
+          {'intro' in VORTEILE && (
+            <p className="mt-4 font-heading text-sm text-brand-grayMid leading-[1.7] max-w-3xl mx-auto">
+              {VORTEILE.intro}
+            </p>
+          )}
         </motion.div>
 
         <div className="mt-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {VORTEILE.items.map((item, index) => {
-            const Icon = ICONS[item.title] ?? ShieldCheck
+            const iconSrc = ICONS[item.title]
 
             return (
               <motion.div
@@ -44,9 +49,17 @@ export default function Vorteile() {
                 transition={{ duration: 0.5, ease: 'easeOut', delay: index * 0.1 }}
                 whileHover={{ y: -4 }}
               >
-                <div className="w-16 h-16 rounded-full bg-brand-beige flex items-center justify-center">
-                  <Icon size={32} className="text-brand-accent" />
-                </div>
+                {iconSrc && (
+                  <div className="w-16 h-16 rounded-full overflow-hidden">
+                    <Image
+                      src={iconSrc}
+                      alt={item.title}
+                      width={64}
+                      height={64}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                )}
 
                 <h3 className="mt-5 font-heading text-[1.5rem] font-semibold text-brand-text">
                   {item.title}

@@ -1,8 +1,9 @@
 'use client'
 
 import { useState, useRef } from 'react'
+import Image from 'next/image'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Check, X, ArrowUpCircle } from 'lucide-react'
+import { Check } from 'lucide-react'
 import Toggle from '@/components/ui/Toggle'
 import {
   TARIF,
@@ -11,8 +12,6 @@ import {
   TARIF_DATA,
   type TarifToggle,
 } from '@/lib/constants'
-
-const HIGHLIGHTED_INDEX = 2 // Komfort
 
 export default function TarifVergleich() {
   const [activeToggle, setActiveToggle] = useState<TarifToggle>('OP-Schutz')
@@ -40,7 +39,7 @@ export default function TarifVergleich() {
           <h2 className="font-heading text-[1.625rem] md:text-[2.25rem] font-semibold text-brand-text">
             {TARIF.title}
           </h2>
-          <p className="mt-3 font-body text-base text-brand-grayMid">
+          <p className="mt-3 font-heading text-base text-brand-grayMid">
             {TARIF.subtitle}
           </p>
         </motion.div>
@@ -54,7 +53,7 @@ export default function TarifVergleich() {
           />
         </div>
 
-        {/* Table with slide animation */}
+        {/* Table */}
         <div className="mt-8 overflow-x-auto">
           <AnimatePresence mode="wait" initial={false}>
             <motion.div
@@ -64,114 +63,141 @@ export default function TarifVergleich() {
               exit={{ x: directionRef.current * -300, opacity: 0 }}
               transition={{ duration: 0.3, ease: 'easeInOut' }}
             >
-              <table className="w-full min-w-[600px] border-collapse">
-                {/* Column headers */}
+              <table className="w-full min-w-[700px] border-collapse">
                 <thead>
                   <tr>
-                    <th className="p-4 text-left font-heading text-sm font-semibold text-brand-grayMid w-[200px]">
+                    <th className="p-4 text-left font-heading text-sm font-semibold text-brand-grayMid w-[220px]">
                       {TARIF.columnHeader}
                     </th>
-                    {TARIF_STUFEN.map((stufe, i) => (
-                      <th
-                        key={stufe}
-                        className={`p-4 text-center font-heading text-base font-semibold relative ${
-                          i === HIGHLIGHTED_INDEX
-                            ? 'bg-brand-beige border-t-2 border-brand-accent'
-                            : ''
-                        }`}
-                      >
-                        {i === HIGHLIGHTED_INDEX && (
-                          <span className="absolute -top-3 left-1/2 -translate-x-1/2 bg-brand-accent text-white text-xs font-heading font-semibold px-3 py-0.5 rounded-full whitespace-nowrap">
-                            {TARIF.highlightBadge}
-                          </span>
-                        )}
+                    {TARIF_STUFEN.map((stufe) => (
+                      <th key={stufe} className="p-4 text-center font-heading text-base font-semibold">
                         {stufe}
                       </th>
                     ))}
                   </tr>
                 </thead>
-
-                {/* Feature rows */}
                 <tbody>
                   {plan.features.map((feature, rowIdx) => (
                     <tr
                       key={feature.label}
                       className={rowIdx % 2 === 0 ? 'bg-brand-grayLight/50' : ''}
                     >
-                      <td className="p-4 font-body text-sm text-brand-text">
+                      <td className="p-4 font-heading text-sm text-brand-text font-medium">
                         {feature.label}
                       </td>
-                      {feature.included.map((included, colIdx) => (
-                        <td
-                          key={colIdx}
-                          className={`p-4 text-center ${
-                            colIdx === HIGHLIGHTED_INDEX ? 'bg-brand-beige/60' : ''
-                          }`}
-                        >
-                          {included ? (
-                            <Check size={20} className="text-brand-success mx-auto" />
+                      {feature.values.map((value, colIdx) => (
+                        <td key={colIdx} className="p-4 text-center font-heading text-sm text-brand-text">
+                          {value === '✗' ? (
+                            <span className="text-brand-error font-bold">✗</span>
                           ) : (
-                            <X size={20} className="text-brand-error mx-auto" />
+                            value
                           )}
                         </td>
                       ))}
                     </tr>
                   ))}
-
-                  {/* Price row */}
-                  <tr className="border-t-2 border-brand-border">
-                    <td className="p-4 font-heading text-sm font-semibold text-brand-text">
-                      {TARIF.priceLabel}
-                    </td>
-                    {plan.prices.map((price, colIdx) => (
-                      <td
-                        key={colIdx}
-                        className={`p-4 text-center font-heading text-lg font-bold text-brand-text ${
-                          colIdx === HIGHLIGHTED_INDEX ? 'bg-brand-beige/60' : ''
-                        }`}
-                      >
-                        {price}
-                      </td>
-                    ))}
-                  </tr>
                 </tbody>
               </table>
             </motion.div>
           </AnimatePresence>
         </div>
 
-        {/* Wechseloption Card */}
+        {/* Wartezeiten */}
         <motion.div
-          className="mt-12 bg-brand-beige border border-brand-border rounded-xl p-8"
+          className="mt-12 bg-brand-grayLight rounded-xl p-8"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, ease: 'easeOut' }}
         >
-          <div className="flex flex-col md:flex-row md:items-start gap-6">
-            <div className="shrink-0 w-12 h-12 rounded-full bg-white flex items-center justify-center">
-              <ArrowUpCircle size={28} className="text-brand-accent" />
-            </div>
+          <h3 className="font-heading text-[1.25rem] font-semibold text-brand-text">
+            {TARIF.wartezeiten.title}
+          </h3>
+          <p className="mt-2 font-heading text-sm text-brand-grayMid">
+            {TARIF.wartezeiten.subtitle}
+          </p>
+          <ul className="mt-4 space-y-2">
+            {TARIF.wartezeiten.items.map((item) => (
+              <li key={item} className="flex items-start gap-2">
+                <Check size={18} className="text-brand-accent mt-0.5 shrink-0" />
+                <span className="font-heading text-sm text-brand-text">{item}</span>
+              </li>
+            ))}
+          </ul>
+        </motion.div>
 
+        {/* Wann zahlt */}
+        <motion.div
+          className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-6"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, ease: 'easeOut' }}
+        >
+          <div className="bg-brand-beige rounded-xl p-8">
+            <h3 className="font-heading text-[1.125rem] font-semibold text-brand-text">
+              Die Versicherung zahlt, wenn ...
+            </h3>
+            <ul className="mt-4 space-y-2">
+              {TARIF.wannZahlt.zahlt.map((item) => (
+                <li key={item} className="flex items-start gap-2">
+                  <Check size={16} className="text-brand-success mt-0.5 shrink-0" />
+                  <span className="font-heading text-sm text-brand-text">{item}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div className="bg-white border border-brand-border rounded-xl p-8">
+            <h3 className="font-heading text-[1.125rem] font-semibold text-brand-text">
+              Die Versicherung zahlt z. B. nicht, wenn ...
+            </h3>
+            <ul className="mt-4 space-y-2">
+              {TARIF.wannZahlt.zahltNicht.map((item) => (
+                <li key={item} className="flex items-start gap-2">
+                  <span className="text-brand-error mt-0.5 shrink-0 font-bold text-sm">✗</span>
+                  <span className="font-heading text-sm text-brand-text">{item}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </motion.div>
+
+        {/* Wechseloption – USP */}
+        <motion.div
+          className="mt-16 relative bg-gradient-to-br from-brand-beige via-white to-brand-beige border-2 border-brand-accent rounded-2xl p-8 md:p-10 shadow-lg overflow-hidden"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, ease: 'easeOut' }}
+        >
+          <div className="absolute -top-20 -right-20 w-40 h-40 bg-brand-accent/20 rounded-full blur-3xl" />
+          <div className="relative flex flex-col md:flex-row md:items-start gap-6">
+            <div className="shrink-0 w-16 h-16 rounded-full bg-brand-accent/10 border-2 border-brand-accent flex items-center justify-center overflow-hidden">
+              <Image
+                src="/images/icons/directions-light.jpg"
+                alt="Wechseloption"
+                width={64}
+                height={64}
+                className="w-full h-full object-cover"
+              />
+            </div>
             <div className="flex-1">
               <div className="flex flex-wrap items-center gap-3">
-                <h3 className="font-heading text-[1.5rem] font-semibold text-brand-text">
+                <h3 className="font-heading text-[1.75rem] md:text-[2rem] font-bold text-brand-text">
                   {TARIF.wechseloption.title}
                 </h3>
-                <span className="inline-block bg-brand-accent text-white text-xs font-heading font-semibold px-3 py-1 rounded-full">
+                <span className="inline-block bg-brand-accent text-white text-sm font-heading font-bold px-4 py-1.5 rounded-full shadow-md animate-pulse">
                   {TARIF.wechseloption.badge}
                 </span>
               </div>
-
-              <p className="mt-3 font-body text-base text-brand-grayMid leading-[1.7]">
+              <p className="mt-4 font-heading text-base md:text-lg text-brand-grayMid leading-[1.7]">
                 {TARIF.wechseloption.description}
               </p>
-
-              <ul className="mt-4 space-y-2">
+              <ul className="mt-5 space-y-3">
                 {TARIF.wechseloption.bullets.map((bullet) => (
-                  <li key={bullet} className="flex items-start gap-2">
-                    <Check size={18} className="text-brand-accent mt-0.5 shrink-0" />
-                    <span className="font-body text-sm text-brand-text">{bullet}</span>
+                  <li key={bullet} className="flex items-start gap-3">
+                    <Check size={20} className="text-brand-accent mt-0.5 shrink-0" />
+                    <span className="font-heading text-base text-brand-text">{bullet}</span>
                   </li>
                 ))}
               </ul>

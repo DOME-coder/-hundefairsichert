@@ -1,12 +1,24 @@
+import Image from 'next/image'
 import { Instagram, Facebook } from 'lucide-react'
-import { FOOTER } from '@/lib/constants'
+import { FOOTER, SITE } from '@/lib/constants'
 
 export default function Footer() {
   return (
     <footer className="bg-brand-text text-white py-12">
       <div className="max-w-content mx-auto px-6 flex flex-col items-center gap-6">
-        {/* Company name */}
-        <p className="font-heading text-lg font-semibold">
+        {/* Logo + Company name */}
+        <div className="flex items-center gap-3">
+          <Image
+            src="/images/logo-white.png"
+            alt="HundeFAIRsichert Logo"
+            width={32}
+            height={32}
+            className="w-8 h-8 brightness-200"
+          />
+          <span className="font-heading text-lg font-semibold">{SITE.name}</span>
+        </div>
+
+        <p className="font-body text-sm text-gray-400">
           {FOOTER.company}
         </p>
 
@@ -25,26 +37,16 @@ export default function Footer() {
 
         {/* Social icons */}
         <div className="flex items-center gap-4">
-          <a
-            href="#"
-            aria-label="Instagram"
-            className="text-gray-400 hover:text-white transition-colors"
-          >
+          <a href="#" aria-label="Instagram" className="text-gray-400 hover:text-white transition-colors">
             <Instagram size={20} />
           </a>
-          <a
-            href="#"
-            aria-label="Facebook"
-            className="text-gray-400 hover:text-white transition-colors"
-          >
+          <a href="#" aria-label="Facebook" className="text-gray-400 hover:text-white transition-colors">
             <Facebook size={20} />
           </a>
         </div>
 
         {/* Copyright */}
-        <p className="font-body text-xs text-gray-500">
-          {FOOTER.copyright}
-        </p>
+        <p className="font-body text-xs text-gray-500">{FOOTER.copyright}</p>
       </div>
     </footer>
   )

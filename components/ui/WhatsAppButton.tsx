@@ -17,7 +17,7 @@ export default function WhatsAppButton() {
       <MessageCircle size={24} />
 
       {/* Tooltip – desktop only */}
-      <span className="hidden md:block absolute right-full mr-3 px-3 py-1.5 bg-brand-text text-white text-sm font-body rounded-lg whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none">
+      <span className="hidden md:block absolute right-full mr-3 px-3 py-1.5 bg-brand-text text-white text-sm font-heading rounded-lg whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none">
         Jetzt beraten lassen
       </span>
     </a>

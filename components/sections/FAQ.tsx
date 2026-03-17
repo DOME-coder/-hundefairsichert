@@ -34,6 +34,11 @@ export default function FaqSection() {
           <h2 className="font-heading text-[1.625rem] md:text-[2.25rem] font-semibold text-brand-text">
             {FAQ.title}
           </h2>
+          {'subtitle' in FAQ && (
+            <p className="mt-3 font-heading text-base text-brand-grayMid">
+              {FAQ.subtitle}
+            </p>
+          )}
         </motion.div>
 
         {/* Tabs */}

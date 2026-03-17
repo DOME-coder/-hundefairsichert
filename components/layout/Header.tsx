@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
+import Image from 'next/image'
 import { Menu, X } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { SITE, NAV_LINKS } from '@/lib/constants'
@@ -15,7 +16,6 @@ export default function Header() {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
-  // Close drawer on resize to desktop
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth >= 768) setMobileOpen(false)
@@ -33,11 +33,17 @@ export default function Header() {
       >
         <div className="max-w-content mx-auto w-full px-6 flex items-center justify-between">
           {/* Logo */}
-          <a
-            href="/"
-            className="font-heading font-bold text-xl text-brand-text hover:text-brand-accent transition-colors"
-          >
-            {SITE.name}
+          <a href="/" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
+            <Image
+              src="/images/logo-white.png"
+              alt="HundeFAIRsichert Logo"
+              width={48}
+              height={48}
+              className="w-12 h-12 brightness-0"
+            />
+            <span className="font-heading font-bold text-xl text-brand-text">
+              {SITE.name}
+            </span>
           </a>
 
           {/* Desktop Navigation */}
@@ -68,7 +74,6 @@ export default function Header() {
       <AnimatePresence>
         {mobileOpen && (
           <>
-            {/* Backdrop */}
             <motion.div
               className="fixed inset-0 bg-black/40 z-40"
               initial={{ opacity: 0 }}
@@ -77,8 +82,6 @@ export default function Header() {
               transition={{ duration: 0.2 }}
               onClick={() => setMobileOpen(false)}
             />
-
-            {/* Drawer Panel */}
             <motion.div
               className="fixed top-0 right-0 h-full w-72 bg-white z-50 flex flex-col shadow-xl"
               initial={{ x: '100%' }}
@@ -86,7 +89,6 @@ export default function Header() {
               exit={{ x: '100%' }}
               transition={{ type: 'tween', duration: 0.25, ease: 'easeOut' }}
             >
-              {/* Drawer Header */}
               <div className="flex items-center justify-between px-6 h-[60px] border-b border-brand-border">
                 <span className="font-heading font-bold text-brand-text">Menü</span>
                 <button
@@ -97,8 +99,6 @@ export default function Header() {
                   <X size={24} />
                 </button>
               </div>
-
-              {/* Drawer Links */}
               <nav className="flex flex-col p-4">
                 {NAV_LINKS.map((link) => (
                   <a

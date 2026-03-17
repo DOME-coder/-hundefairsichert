@@ -29,17 +29,24 @@ export const HERO = {
 // ─────────────────────────────────────────────
 export const TEAM = {
   title: 'Das sind wir',
-  subtitle: 'Dein Team bei SENATOR Versicherungsmakler GmbH',
-  // members: [TBD – Fotos und Namen vom Auftraggeber]
+  subtitle: 'Dein Team bei HundeFAIRsichert',
+  description:
+    'Bei HundeFAIRsichert dreht sich alles um das Wohl von Hund und Halter. Wir sind dein persönlicher Ansprechpartner, wenn es darum geht, für Sicherheit und Wohlbefinden zu sorgen – für dich und deinen Hund. Mit maßgeschneiderten Lösungen ermöglichen wir euch ein sorgenfreies Miteinander, damit ihr euch voll und ganz auf das konzentrieren könnt, was wirklich zählt: das gemeinsame Erleben unvergesslicher Momente.',
   members: [
-    { name: '[TBD]', role: '[TBD]', image: '' },
-    { name: '[TBD]', role: '[TBD]', image: '' },
-    { name: '[TBD]', role: '[TBD]', image: '' },
+    { name: 'Gianclaudio Sena', role: 'Geschäftsführer', image: '/images/team/team-6.png' },
+    { name: 'Giuseppa Muscara', role: 'Kundenbetreuerin', image: '/images/team/team-2.png' },
+    { name: 'Berkan Atac', role: 'Kundenbetreuer', image: '/images/team/team-3.png' },
+    { name: 'Maria Russo', role: 'Kundenberaterin', image: '/images/team/team-1.png' },
+    { name: 'Enza Sena', role: 'Kundenbetreuerin', image: '/images/team/team-4.png' },
+    { name: 'Gesine Bischoff', role: 'Kundenbetreuerin', image: '/images/team/team-5.png' },
+    { name: 'Sascha Bauer', role: 'Kundenbetreuer', image: '/images/team/team-9.png' },
+    { name: 'Helena Curic', role: 'Kundenbetreuerin', image: '/images/team/team-7.png' },
+    { name: 'Asena Yeker', role: 'Vertriebsassistentin', image: '/images/team/team-8.png' },
   ] as Array<{ name: string; role: string; image: string }>,
 } as const
 
 // ─────────────────────────────────────────────
-// Vorteile
+// Vorteile (Produkte)
 // ─────────────────────────────────────────────
 export interface VorteilItem {
   title: string
@@ -48,29 +55,76 @@ export interface VorteilItem {
 }
 
 export const VORTEILE = {
-  title: 'Unsere Leistungen',
-  subtitle: 'Zwei Schutzpakete – individuell auf deinen Hund abgestimmt',
+  title: 'Möglichkeiten zur Absicherung',
+  subtitle: 'Individueller Schutz – Wähle in beiden Produkten den passenden Tarif: Basis, Smart, Komfort oder Premium.',
+  intro: 'Auch bei bester Fürsorge kann ein Hund krank werden oder einen Unfall erleiden – und tierärztliche Behandlungen können schnell sehr teuer werden. Operationen und andere Behandlungen gehen oft mit hohen Kosten einher. Seit der Anpassung der Gebührenordnung für Tierärztinnen und Tierärzte (GOT) im November 2022 sind die Tierarztkosten zudem erheblich gestiegen. Eine Hundekrankenversicherung schützt zuverlässig vor diesen finanziellen Belastungen und erstattet Kosten für notwendige tierärztliche Behandlungen nach Unfall, Krankheit oder Fehlentwicklung.',
   items: [
     {
       title: 'OP-Schutz',
       description:
-        'Absicherung bei medizinisch notwendigen Operationen – egal ob durch Unfall, Krankheit oder Fehlentwicklung. Inklusive Nachbehandlung bis zu 15 Tage nach der OP.',
+        'Die OP-Versicherung deckt die Kosten für medizinisch notwendige Operationen aufgrund von Unfall, Krankheit oder Fehlentwicklung sowie Nachbehandlungen von bis zu 30 Tagen.',
     },
     {
       title: 'Vollschutz',
       description:
-        'Alles aus dem OP-Schutz plus Absicherung bei ambulanten Behandlungen ohne Operation. Auch alternative und komplementäre Heilmethoden wie Homöopathie oder Physiotherapie sind mitversichert.',
+        'Die Krankenvollversicherung deckt neben den Kosten für Operationen auch die Kosten für notwendige Behandlungen ohne Operationen ab. Hierzu zählen auch alternative und komplementäre Behandlungsmethoden, z. B. Homöopathie.',
     },
     {
       title: 'Flexible Selbstbeteiligung',
-      description: 'Wähle die Selbstbeteiligung, die zu dir passt:',
+      description: 'Alle Tarife sind mit oder ohne Selbstbeteiligung abschließbar. Neu ist die Deckelung der Selbstbeteiligung – für mehr Planbarkeit bei hohen Rechnungen:',
       bullets: [
-        'Ohne Selbstbeteiligung',
-        '10 % Selbstbeteiligung – maximal 1.500 € pro Rechnung',
-        '20 % Selbstbeteiligung – maximal 3.000 € pro Rechnung',
+        '10 % Selbstbeteiligung: maximal 500 € pro Rechnung',
+        '20 % Selbstbeteiligung: maximal 1.000 € pro Rechnung',
       ],
     },
   ] satisfies VorteilItem[],
+} as const
+
+// ─────────────────────────────────────────────
+// Vorteile und Leistungen (Benefit-Cards)
+// ─────────────────────────────────────────────
+export interface BenefitCard {
+  title: string
+  description: string
+}
+
+export const VORTEILE_LEISTUNGEN = {
+  title: 'Vorteile und Leistungen',
+  subtitle: 'Was unsere Hundekrankenversicherung leistet',
+  items: [
+    {
+      title: 'OP-Leistungen',
+      description: 'Im OP-Schutz und im Vollschutz werden bei Krankheit oder nach einem Unfall bis zu 100 % der Tierarztkosten für chirurgische Eingriffe unter Narkose (auch Teilnarkose) und deren Nachbehandlung von bis zu 30 Folgetagen unbegrenzt pro Jahr erstattet – abhängig vom gewählten Tarif. Ab Smart sind auch Leistungen für Zahnbehandlungen und chirurgische Behandlungen der Maulhöhle mit gesonderter Höchstleistung versichert.',
+    },
+    {
+      title: 'Behandlungen bei Operationen',
+      description: 'Der Vollschutz deckt zusätzlich ambulante und stationäre Tierarztbehandlungen bei Unfall oder Krankheit unabhängig von einer Operation mit ab. Wenn Ihr Hund beispielsweise wegen einer Durchfallerkrankung ein paar Tage in der Tierklinik bleiben muss oder die Behandlung von chronischen Erkrankungen (z. B. Stoffwechselerkrankung) in einer Tierarztpraxis erfolgen muss, sichert der Vollschutz ab.',
+    },
+    {
+      title: 'Basisvorsorge',
+      description: 'Die Vorsorgemaßnahmen Floh- & Zeckenbekämpfung, Entwurmungen, Impfungen (Empfehlung StiKo Vet) sowie die einmalige Kennzeichnung (Mikrochip) sind bereits im OP-Schutz ab dem Tarif Smart mit einer Höchstsumme versichert. Für diese Leistungen besteht keine Selbstbeteiligung und keine Wartezeit.',
+    },
+    {
+      title: 'Vorsorgebonus',
+      description: 'Gesunde Hunde profitieren von einem Zuschuss zur Basisvorsorge für leistungsfreie Versicherungsjahre: 50 Euro nach dem ersten und 150 Euro nach dem zweiten, unmittelbar darauffolgenden Jahr. Der Vorsorgebonus entfällt nach einem Jahr mit Leistungen für das Folgejahr.',
+    },
+    {
+      title: 'Keine Wartezeit bei Unfällen',
+      description: 'Unsere Hundekrankenversicherung übernimmt nach einem Unfall die Kosten der Behandlung – ganz ohne Wartezeit! Die Übernahme der Kosten für die versicherte Behandlung richtet sich dabei nach dem gewählten Tarif.',
+    },
+    {
+      title: 'Erstattung nach GOT',
+      description: 'Die Tierkrankenversicherung für Hunde zahlt – je nach Tarif – bis zum vierfachen Satz der Gebührenordnung für Tierärztinnen und Tierärzte (GOT). Bei Notfällen, zum Beispiel in der Nacht oder am Wochenende, wird auch die Notdienstgebühr erstattet.',
+    },
+    {
+      title: 'Schutz für Jungtiere',
+      description: 'Welpen, die bei Versicherungsbeginn maximal sechs Monate alt sind, haben keine Wartezeit und wir gewähren sofortigen Versicherungsschutz. Auch Vorsorgeleistungen wie Impfungen, die einmalige Kennzeichnung (Mikrochip) und das Ausstellen des EU-Heimtierausweises können gleich genutzt werden.',
+    },
+    {
+      title: 'Physiotherapie',
+      description: 'Physiotherapie ist im OP-Schutz (ab Smart) bis zu 60 Tage im Anschluss an eine Operation mit einer Höchstsumme von bis zu 500 Euro pro Versicherungsjahr versichert. Im Vollschutz übernehmen wir auch ohne vorhergehende Operation die Kosten für Physiotherapie durch eine Tierärztin oder einen Tierarzt oder mit Überweisung durch einen Therapeuten oder eine Therapeutin.',
+    },
+  ] satisfies BenefitCard[],
 } as const
 
 // ─────────────────────────────────────────────
@@ -88,37 +142,41 @@ export const TARIF_STUFEN: TarifStufe[] = ['Basis', 'Smart', 'Komfort', 'Premium
 
 export interface TarifFeature {
   label: string
-  included: [boolean, boolean, boolean, boolean] // Basis, Smart, Komfort, Premium
+  values: [string, string, string, string]
 }
 
 export interface TarifPlan {
   features: TarifFeature[]
-  prices: [string, string, string, string] // Basis, Smart, Komfort, Premium
 }
 
-// [TBD – Leistungsdetails und Preise vom Auftraggeber]
 export const TARIF_DATA: Record<TarifToggle, TarifPlan> = {
   'OP-Schutz': {
     features: [
-      { label: 'Operationen nach Unfall', included: [true, true, true, true] },
-      { label: 'Operationen nach Krankheit', included: [false, true, true, true] },
-      { label: 'Nachbehandlung bis 15 Tage', included: [false, false, true, true] },
-      { label: 'Freie Tierarztwahl', included: [true, true, true, true] },
-      { label: 'Direktabrechnung Tierarzt', included: [false, false, true, true] },
-      { label: 'Auslandsschutz', included: [false, false, false, true] },
+      { label: 'Jahreshöchstleistung', values: ['2.500 €', '5.000 €', '10.000 €', 'unbegrenzt'] },
+      { label: 'Selbstbeteiligung', values: ['wählbar', 'wählbar', 'wählbar', 'wählbar'] },
+      { label: 'Behandlungen ohne OP', values: ['✗', '✗', '✗', '✗'] },
+      { label: 'Erstattung nach GOT', values: ['2-fach', '4-fach', '4-fach', '4-fach'] },
+      { label: 'Nachbehandlungen nach OP', values: ['bis 20 Tage', 'bis 20 Tage', 'bis 30 Tage', 'bis 30 Tage'] },
+      { label: 'Basisvorsorge', values: ['✗', 'bis 50 €', 'bis 100 €', 'bis 100 €'] },
+      { label: 'Vorsorgebonus', values: ['✗', '50 € / 150 €', '50 € / 150 €', '50 € / 150 €'] },
+      { label: 'Physiotherapie', values: ['✗', 'bis 150 €', 'bis 500 €', 'bis 500 €'] },
+      { label: 'Zahnbehandlungen', values: ['✗', 'bis 1.000 €', 'bis 2.500 €', 'bis 5.000 €'] },
+      { label: 'Bestimmte Behandlungen', values: ['✗', '500 € / Diagnose', '2.500 € / Diagnose', '5.000 € / Diagnose'] },
     ],
-    prices: ['[TBD]', '[TBD]', '[TBD]', '[TBD]'],
   },
   'Vollschutz': {
     features: [
-      { label: 'Alle OP-Schutz-Leistungen', included: [true, true, true, true] },
-      { label: 'Ambulante Behandlungen', included: [false, true, true, true] },
-      { label: 'Vorsorgeuntersuchungen', included: [false, false, true, true] },
-      { label: 'Alternative Heilmethoden', included: [false, false, true, true] },
-      { label: 'Physiotherapie', included: [false, false, false, true] },
-      { label: 'Auslandsschutz', included: [false, false, true, true] },
+      { label: 'Jahreshöchstleistung', values: ['2.500 €', '5.000 €', '10.000 €', 'unbegrenzt'] },
+      { label: 'Selbstbeteiligung', values: ['wählbar', 'wählbar', 'wählbar', 'wählbar'] },
+      { label: 'Behandlungen ohne OP', values: ['bis 1.000 €', 'bis 2.000 €', 'bis 4.000 €', 'bis 8.000 €'] },
+      { label: 'Erstattung nach GOT', values: ['2-fach', '4-fach', '4-fach', '4-fach'] },
+      { label: 'Nachbehandlungen nach OP', values: ['bis 20 Tage', 'bis 20 Tage', 'bis 30 Tage', 'bis 30 Tage'] },
+      { label: 'Basisvorsorge', values: ['✗', 'bis 50 €', 'bis 100 €', 'bis 100 €'] },
+      { label: 'Vorsorgebonus', values: ['✗', '50 € / 150 €', '50 € / 150 €', '50 € / 150 €'] },
+      { label: 'Physiotherapie', values: ['✗', 'bis 150 €', 'bis 500 €', 'bis 500 €'] },
+      { label: 'Zahnbehandlungen', values: ['✗', 'bis 1.000 €', 'bis 2.500 €', 'bis 5.000 €'] },
+      { label: 'Bestimmte Behandlungen', values: ['✗', '500 € / Diagnose', '2.500 € / Diagnose', '5.000 € / Diagnose'] },
     ],
-    prices: ['[TBD]', '[TBD]', '[TBD]', '[TBD]'],
   },
 }
 
@@ -126,20 +184,83 @@ export const TARIF = {
   title: 'Vergleich unserer Tarife',
   subtitle: 'Finde den Tarif, der am besten zu deinem Hund passt',
   columnHeader: 'Leistung',
-  highlightBadge: 'Beliebteste Wahl',
-  priceLabel: 'Preis / Monat',
+  wartezeiten: {
+    title: 'Wartezeiten im Überblick',
+    subtitle: 'Damit du genau weißt, ab wann dein Schutz greift:',
+    items: [
+      'Jungtiere unter 6 Monate: keine Wartezeit',
+      'Unfall: keine Wartezeit – der Schutz gilt sofort',
+      'Basisvorsorge: keine Wartezeit',
+      'Krankheit & Fehlentwicklung: 3 Monate Wartezeit',
+      'Chirurgische Kastration bzw. Sterilisation & Notkaiserschnitt: 3 Monate Wartezeit',
+    ],
+  },
+  wannZahlt: {
+    title: 'Wann zahlt die Hundekrankenversicherung?',
+    zahlt: [
+      'Dein Hund nach einem Unfall operiert werden muss, z. B. wegen eines Kreuzbandrisses beim Toben.',
+      'Eine Operation wegen einer Krankheit erforderlich ist, z. B. die Entfernung von Hauttumoren.',
+      'Dir Kosten durch Behandlungen ohne Operation und Medikamente entstanden sind, z. B. wegen einer Ohrenentzündung – sofern der Vollschutz gewählt wurde.',
+      'Eine chirurgische Kastration bzw. Sterilisation durchgeführt wird, auch ohne medizinische Indikation (ab Tarif Smart).',
+      'Ein einmaliger Notkaiserschnitt bei einer trächtigen Hündin notwendig ist.',
+      'Zahnbehandlungen oder chirurgische Behandlungen der Maulhöhle notwendig sind (z. B. Zahnextraktion, Zahnfüllung, Wurzelbehandlung).',
+    ],
+    zahltNicht: [
+      'Kosten durch spezielles Diät- und Ergänzungsfuttermittel entstehen.',
+      'Medizinisch nicht notwendige Behandlungen vorgenommen werden, z. B. Operationen zur Herstellung des Rassestandards.',
+      'Eine Selbstbeteiligung vereinbart ist – die Kosten in Höhe der Selbstbeteiligung müssen selbst getragen werden.',
+      'Ein Krankheitsfall oder eine Fehlentwicklung während der Wartezeit auftritt.',
+      'Für die Korrektur oder Behandlung des brachycephalen Syndroms (Kurz- und Rundköpfigkeit).',
+    ],
+  },
   wechseloption: {
-    title: 'Wechseloption – Dein Upgrade ohne Risiko',
+    title: 'Zusatzbaustein Wechseloption',
     badge: 'Einmalig zubuchbar',
     description:
-      'Sichere dir beim Abschluss die Möglichkeit, einmalig in einen höherwertigen Tarif zu wechseln – ganz ohne erneute Gesundheitsprüfung deines Hundes. Zum Beispiel von Basis direkt zu Premium.',
+      'Du hast einmalig bei einem Erstabschluss der neuen Hundekrankenversicherung die Möglichkeit, den Zusatzbaustein „Wechseloption" in deinen Vertrag einzuschließen. Du kannst den Baustein einmalig nutzen, um die Leistungen in deinem Vertrag zu verbessern.',
     bullets: [
-      'Nur einmal nutzbar während der Vertragslaufzeit',
-      'Beim Abschluss zubuchbar',
-      'Wechsel jederzeit in einen höherwertigen Tarif möglich',
+      'Leistungsverbesserungen ohne erneute Gesundheitsprüfung',
+      'Einmalig während der gesamten Vertragslaufzeit nutzbar – keine Frist',
+      'Ohne Zusatzbaustein ist eine Verbesserung nur mit erneuter Gesundheitsprüfung möglich',
+      'Für neu hinzukommende Leistungen greifen die Wartezeiten',
     ],
-    // price: [TBD]
   },
+} as const
+
+// ─────────────────────────────────────────────
+// Extra Leistungen
+// ─────────────────────────────────────────────
+export interface ExtraLeistungItem {
+  image: string
+  title: string
+  text: string
+}
+
+export const EXTRA_LEISTUNGEN = {
+  title: 'Extra Leistungen',
+  subtitle: 'Zusätzliche Vorteile für deinen Hund',
+  items: [
+    {
+      image: '/images/hunde/dog-leash.jpg',
+      title: 'Lebenslange Absicherung',
+      text: 'Wir versichern Hunde ab der achten Lebenswoche – ohne Maximalalter und mit gleichbleibenden Leistungen im Alter. Zudem verzichten wir ab dem vierten Versicherungsjahr auf unser ordentliches Kündigungsrecht zum Ablauf sowie auf unser Kündigungsrecht im Versicherungsfall.',
+    },
+    {
+      image: '/images/hunde/airplane.jpg',
+      title: 'Schutz im Ausland',
+      text: 'Der Versicherungsschutz für Hunde gilt auch im Ausland, und zwar bis zu zwölf Monate bei weltweiten Reisen. Erstattet werden auch versicherte Behandlungen, die gezielt im Ausland durchgeführt werden.',
+    },
+    {
+      image: '/images/hunde/vet-desk.jpg',
+      title: 'Telemedizin',
+      text: 'Bevor spätabends ein Besuch bei einer Tierarztpraxis notwendig ist, kann auch per Smartphone oder Telefon eine digitale Sprechstunde direkt mit einem niedergelassenen Tierarzt genutzt werden. Wir übernehmen auch die Kosten für eine telemedizinische Beratung.',
+    },
+    {
+      image: '/images/hunde/puppy.jpg',
+      title: 'Freie Tierarztwahl & Direktabrechnung',
+      text: 'Die Tierarztpraxis bzw. Tierklinik kann frei gewählt werden. Damit nach einer Operation die Genesung im Mittelpunkt stehen kann, übernehmen wir gerne die Direktabrechnung mit der Tierarztpraxis oder Klinik.',
+    },
+  ] satisfies ExtraLeistungItem[],
 } as const
 
 // ─────────────────────────────────────────────
@@ -159,15 +280,15 @@ export const VERSICHERUNGSFALL = {
     {
       step: 1,
       title: 'Tierarzt frei wählen',
-      text: 'Für dich besteht freie Tierarztwahl. Muss das Tier tierärztlich behandelt werden, kannst du den Tierarzt oder die Tierklinik deines Vertrauens aufsuchen.',
+      text: 'Für dich besteht freie Tierarztwahl. Muss dein Hund tierärztlich behandelt werden, kannst du den Tierarzt oder die Tierklinik deines Vertrauens aufsuchen.',
     },
     {
       step: 2,
       title: 'GOT-konforme Rechnung anfordern',
-      text: 'Die Rechnung des Tierarztes ist nach der Gebührenordnung für Tierärzte (GOT) zu erstellen und muss mindestens folgende Daten enthalten:',
+      text: 'Die Rechnung des Tierarztes ist nach der Gebührenordnung für Tierärztinnen und Tierärzte (GOT) zu erstellen und muss mindestens folgende Daten enthalten:',
       bullets: [
         'Name des Versicherungsnehmers (Tierhalter)',
-        'Chipnummer / Tätowierungsnummer / Lebensnummer des Tieres (Sollte diese Markierung nicht vorhanden sein: Name, Farbe, Rasse des Tieres, Geburtsdatum und Geschlecht angeben)',
+        'Chipnummer / Tätowierungsnummer / Lebensnummer des Tieres',
         'Diagnose',
         'Berechnete Leistungen aufgegliedert nach Gebührenpositionen mit dem jeweiligen Gebührensatz',
         'Datum der erbrachten Leistungen',
@@ -176,12 +297,12 @@ export const VERSICHERUNGSFALL = {
     {
       step: 3,
       title: 'Erstattungsweg wählen',
-      text: 'Als besonderen Service bieten wir die Direktabrechnung mit dem Tierarzt an. Du kannst wählen, ob du im Versicherungsfall die Erstattungskosten selbst erhalten möchtest oder direkt an den behandelnden Tierarzt bzw. die behandelnde Tierärztin gezahlt werden sollen.',
+      text: 'Als besonderen Service bieten wir die Direktabrechnung mit dem Tierarzt an. Du kannst wählen, ob du im Versicherungsfall die Erstattungskosten selbst erhalten möchtest oder direkt an den behandelnden Tierarzt gezahlt werden sollen.',
     },
     {
       step: 4,
       title: 'Direkte Kommunikation mit dem Tierarzt',
-      text: 'Zusätzlich bieten wir die direkte Kommunikation mit dem Tierarzt bei Leistungsrückfragen an (Entbindung von der Schweigepflicht). Damit können eventuelle tiermedizinischen Rückfragen von unserer Seite direkt mit dem behandelnden Tierarzt bzw. mit der behandelnden Tierärztin geklärt werden.',
+      text: 'Zusätzlich bieten wir die direkte Kommunikation mit dem Tierarzt bei Leistungsrückfragen an (Entbindung von der Schweigepflicht). Damit können eventuelle tiermedizinische Rückfragen direkt mit dem behandelnden Tierarzt geklärt werden.',
     },
     {
       step: 5,
@@ -199,103 +320,105 @@ export interface HotspotItem {
   title: string
   bodyPart: string
   description: string
+  leistung: string
+  kosten: string
   frequency: string
   position: { x: number; y: number }
 }
 
 export const WISSENSWERTES = {
   title: 'Wissenswertes',
-  subtitle: 'Die 10 häufigsten Behandlungen beim Hund in Deutschland',
+  subtitle: 'Die 9 häufigsten Behandlungen beim Hund in Deutschland',
   hotspots: [
     {
       id: 1,
-      title: 'Kreuzbandriss',
-      bodyPart: 'Kniegelenk',
-      description:
-        'Der Kreuzbandriss ist die häufigste Operation beim Hund. Besonders betroffen sind größere Rassen. Die Behandlung erfordert in den meisten Fällen einen chirurgischen Eingriff mit anschließender Physiotherapie.',
-      frequency: 'Häufigste OP beim Hund in Deutschland',
-      position: { x: 65, y: 70 },
+      title: 'Hauttumore',
+      bodyPart: 'Haut / Gewebe',
+      description: 'Sie kommen vor allem bei älteren Hunden häufiger vor. Bei Geschwulsten muss es sich aber nicht zwangsläufig um Krebs handeln: Viele Tumore sind gutartig, zum Beispiel die Lipome (Fettgeschwulste).',
+      leistung: 'Operative Entfernung von Hauttumoren. Nachbehandlung sowie Aufenthalt in der Tierklinik je nach Tarif bis zu 30 Tagen nach der OP.',
+      kosten: 'ca. 1.200 bis 1.900 €',
+      frequency: 'Häufig bei älteren Hunden',
+      position: { x: 38, y: 50 },
     },
     {
       id: 2,
-      title: 'Magendrehung (Magendilatation-Volvulus)',
+      title: 'Magendrehung',
       bodyPart: 'Magen',
-      description:
-        'Die Magendrehung ist ein lebensbedrohlicher Notfall, der sofortiges Handeln erfordert. Besonders gefährdet sind große Rassen mit tiefer Brust wie Deutsche Dogge oder Rottweiler.',
+      description: 'Bei einer Magendrehung dreht sich der Magen um die eigene Achse. Dadurch können Blutgefäße abgeschnürt werden – es handelt sich um einen akuten Notfall, der schnell behandelt werden muss.',
+      leistung: 'Die operative Behandlung einer Magendrehung ist in allen Tarifen mitversichert. Nachbehandlung je nach Tarif bis zu 30 Tagen.',
+      kosten: 'ca. 3.500 bis 5.000 €',
       frequency: 'Häufig bei großen Rassen',
-      position: { x: 45, y: 50 },
+      position: { x: 48, y: 65 },
     },
     {
       id: 3,
-      title: 'Hüftgelenksdysplasie (HD)',
-      bodyPart: 'Hüftgelenk',
-      description:
-        'Eine genetisch bedingte Fehlentwicklung des Hüftgelenks, die zu Schmerzen und Bewegungseinschränkungen führt. Betrifft vor allem große und mittelgroße Rassen.',
-      frequency: 'Häufig bei großen und mittelgroßen Rassen',
-      position: { x: 60, y: 60 },
+      title: 'Kreuzbandriss',
+      bodyPart: 'Kniegelenk',
+      description: 'Ein Kreuzbandriss gehört zu den häufigsten orthopädischen Verletzungen beim Hund. Er kann z. B. beim Toben, Springen oder unglücklichen Umknicken entstehen und führt häufig zu starken Schmerzen und Lahmheit.',
+      leistung: 'Eine Operation nach einem Unfall ist in allen Tarifen mitversichert. Nachbehandlung je nach Tarif bis zu 30 Tagen. Physiotherapie: 300 €.',
+      kosten: 'ca. 2.500 bis 3.500 €',
+      frequency: 'Häufigste OP beim Hund',
+      position: { x: 28, y: 78 },
     },
     {
       id: 4,
-      title: 'Hauterkrankungen & Allergien',
-      bodyPart: 'Haut / Fell',
-      description:
-        'Hauterkrankungen und Allergien gehören zu den häufigsten chronischen Erkrankungen beim Hund. Sie können durch Umweltfaktoren, Ernährung oder Parasiten ausgelöst werden.',
-      frequency: 'Eine der häufigsten chronischen Erkrankungen',
-      position: { x: 50, y: 30 },
+      title: 'Arthrose',
+      bodyPart: 'Gelenke',
+      description: 'Arthrose ist eine häufig schmerzhafte Erkrankung der Gelenke. Ursachen können z. B. Übergewicht, Fehlbelastungen oder auch eine genetische Veranlagung sein. Die beste Vorbeugung ist eine gesunde, an den Hund angepasste Bewegung.',
+      leistung: 'Im Vollschutz bis zu 8.000 € jährlich für Heilbehandlungen. Alternative Heilmethoden (z. B. Akupunktur) sowie Physiotherapie bis 500 € je Versicherungsjahr.',
+      kosten: 'ca. 700 € jährlich',
+      frequency: 'Häufig bei älteren Hunden',
+      position: { x: 32, y: 62 },
     },
     {
       id: 5,
-      title: 'Otitis (Ohrenentzündung)',
+      title: 'Ohrenentzündung',
       bodyPart: 'Ohren',
-      description:
-        'Ohrenentzündungen treten besonders häufig bei Hunden mit Hängeohren auf. Sie können akut oder chronisch verlaufen und erfordern oft eine längere Behandlung.',
-      frequency: 'Sehr häufig, besonders bei Schlappohrrassen',
-      position: { x: 20, y: 20 },
+      description: 'Hunde mit Schlappohren sind besonders anfällig für Ohrenentzündungen, weil sich Wärme und Feuchtigkeit leichter stauen. Wenn Ihr Hund häufig den Kopf schüttelt und sich dunkles Sekret im Ohr bildet, sollten Sie zum Tierarzt gehen.',
+      leistung: 'Im Vollschutz sind je nach Tarif bis zu 8.000 € pro Jahr für Heilbehandlungen, Untersuchungen, Medikamente abgedeckt.',
+      kosten: 'bis zu 550 €',
+      frequency: 'Sehr häufig bei Schlappohrrassen',
+      position: { x: 72, y: 22 },
     },
     {
       id: 6,
-      title: 'Zahnerkrankungen',
-      bodyPart: 'Zähne / Zahnfleisch',
-      description:
-        'Zahnstein, Parodontose und Zahnextraktionen sind bei Hunden weit verbreitet. Regelmäßige Zahnpflege kann das Risiko reduzieren, aber nicht immer verhindern.',
-      frequency: 'Sehr häufig ab dem mittleren Alter',
-      position: { x: 18, y: 35 },
+      title: 'Grauer Star',
+      bodyPart: 'Augen',
+      description: 'Beim Grauen Star (Katarakt) trübt sich die Augenlinse ein. Das Auge wirkt dadurch grau. Je nach Stärke der Trübung kann ein Hund dadurch schlecht sehen oder sogar erblinden.',
+      leistung: 'Operationen aufgrund einer Krankheit sind in allen Tarifen mitversichert. Nachbehandlung je nach Tarif bis zu 30 Tagen.',
+      kosten: 'bis zu 2.800 €',
+      frequency: 'Häufig bei älteren Hunden',
+      position: { x: 80, y: 25 },
     },
     {
       id: 7,
-      title: 'Augenerkrankungen',
-      bodyPart: 'Augen',
-      description:
-        'Häufige Augenerkrankungen beim Hund sind Katarakt (grauer Star), Entropium (eingerolltes Augenlid) und Trockenes Auge. Manche Rassen sind genetisch stärker gefährdet.',
-      frequency: 'Häufig bei bestimmten Rassen',
-      position: { x: 15, y: 25 },
+      title: 'Zahnextraktion',
+      bodyPart: 'Zähne / Maul',
+      description: 'Das Zähne ziehen beim Hund ist ein chirurgischer Routineeingriff. Dennoch erfordert dieser viel Sorgfalt und Fachwissen. Dadurch können hohe Kosten entstehen.',
+      leistung: 'Die Entfernung von Zähnen ist in allen Tarifen ab Smart unter Voll- oder Teilnarkose mitversichert. Nachbehandlung je nach Tarif bis zu 30 Tagen.',
+      kosten: 'bis zu 1.000 €',
+      frequency: 'Sehr häufig ab mittlerem Alter',
+      position: { x: 82, y: 38 },
     },
     {
       id: 8,
-      title: 'Bandscheibenvorfall',
-      bodyPart: 'Wirbelsäule',
-      description:
-        'Bandscheibenvorfälle können zu starken Schmerzen oder Lähmungserscheinungen führen. Besonders betroffen sind Rassen mit langen Rücken wie Dackel, Beagle oder Basset Hound.',
-      frequency: 'Häufig bei Langzucht-Rassen',
-      position: { x: 50, y: 45 },
+      title: 'Zecken (Borreliose)',
+      bodyPart: 'Wirbelsäule / Rücken',
+      description: 'Für viele von Zecken übertragenen Infektionskrankheiten gibt es keine Präventivmaßnahmen. Eine Ausnahme ist die Borreliose, gegen die du deinen Hund impfen lassen kannst.',
+      leistung: 'Frühzeitig erkannt, ist die Erkrankung Borreliose gut durch spezielle Antibiotika therapierbar. In allen Tarifen ab Smart bis zu 100 € für Vorsorgemaßnahmen.',
+      kosten: 'bis 500 €',
+      frequency: 'Häufig in Zeckengebieten',
+      position: { x: 50, y: 38 },
     },
     {
       id: 9,
-      title: 'Tumorerkrankungen',
+      title: 'Giftköder / Schnittverletzungen',
       bodyPart: 'Verschiedene',
-      description:
-        'Tumore können bei Hunden an verschiedenen Körperstellen auftreten. Ältere Hunde sind besonders gefährdet. Eine frühe Erkennung durch regelmäßige Vorsorgeuntersuchungen ist entscheidend.',
-      frequency: 'Häufig bei älteren Hunden',
-      position: { x: 40, y: 40 },
-    },
-    {
-      id: 10,
-      title: 'Gastritis / Magenprobleme',
-      bodyPart: 'Magen / Verdauung',
-      description:
-        'Erbrechen, Durchfall und Magenprobleme gehören zu den häufigsten Gründen für einen Tierarztbesuch. Ursachen können Ernährungsfehler, Fremdkörper oder Infektionen sein.',
-      frequency: 'Häufigste Gründe für Tierarztbesuche',
-      position: { x: 42, y: 52 },
+      description: 'Hat dein Hund ein vergiftetes Leckerli im Park gefressen? Sofort den Tierarzt kontaktieren. Bei Unfällen wie einer Schnittverletzung oder einem Giftköder entfällt die Wartezeit.',
+      leistung: 'Die operative Versorgung einer Schnittverletzung sowie die operative Entfernung von Giftködern ist in allen Tarifen mitversichert. Keine Wartezeit bei Unfällen.',
+      kosten: 'bis zu 800 €',
+      frequency: 'Notfälle – keine Wartezeit',
+      position: { x: 52, y: 50 },
     },
   ] satisfies HotspotItem[],
 } as const
@@ -310,41 +433,71 @@ export interface FaqItem {
 
 export const FAQ = {
   title: 'Häufig gestellte Fragen',
+  subtitle: 'Hier findest du häufig gestellte Fragen rund um das Thema Hundeversicherung und Wechselbaustein',
   categoryA: {
-    title: 'Allgemeine Fragen',
+    title: 'Hundeversicherung',
     items: [
-      { question: 'Was ist eine Hundekrankenversicherung?', answer: '[TBD]' },
-      { question: 'Ab welchem Alter kann ich meinen Hund versichern?', answer: '[TBD]' },
-      { question: 'Welche Erkrankungen sind ausgeschlossen?', answer: '[TBD]' },
-      { question: 'Was passiert bei Vorerkrankungen?', answer: '[TBD]' },
       {
-        question: 'Kann ich jeden Tierarzt aufsuchen?',
-        answer:
-          'Ja! Du hast freie Tierarztwahl. Du kannst den Tierarzt oder die Tierklinik deines Vertrauens aufsuchen.',
+        question: 'Was ist der Unterschied zwischen OP-Schutz und Vollschutz?',
+        answer: 'Der OP-Schutz übernimmt die Kosten für medizinisch notwendige Operationen unter Narkose (auch Teilnarkose) inklusive der versicherten Nachbehandlung. Der Vollschutz deckt darüber hinaus auch Behandlungen ohne Operation (ambulant und stationär) sowie Medikamente ab – bis zu einer tarifabhängigen Höchstsumme. Je nach Tarif können außerdem weitere Leistungen wie z. B. Physiotherapie mitversichert sein.',
       },
-      { question: 'Gibt es Wartezeiten?', answer: '[TBD]' },
+      {
+        question: 'Welche Kosten übernimmt die Hundekrankenversicherung grundsätzlich?',
+        answer: 'Sie erstattet versicherte Tierarztkosten für notwendige Behandlungen wegen Unfall, Krankheit oder Fehlentwicklung – inklusive Diagnostik, ggf. Operationen und der medizinisch notwendigen Nachbehandlung im vereinbarten Zeitraum. Umfang und Erstattung richten sich dabei nach dem gewählten Tarif.',
+      },
+      {
+        question: 'Gibt es eine Jahreshöchstleistung und wie unterscheiden sich die Tarife?',
+        answer: 'Ja. Sowohl im OP-Schutz als auch im Vollschutz gilt je nach Tarif eine Jahreshöchstleistung: 2.500 € (Basis), 5.000 € (Smart), 10.000 € (Komfort) oder unbegrenzt (Premium) pro Versicherungsjahr.',
+      },
+      {
+        question: 'Welche Wartezeiten gelten?',
+        answer: 'Bei Unfällen gibt es keine Wartezeit – der Schutz gilt sofort. Für Krankheit und Fehlentwicklung gilt eine Wartezeit von 3 Monaten. Für chirurgische Kastration bzw. Sterilisation und Notkaiserschnitt ebenfalls 3 Monate. Für Jungtiere unter 6 Monaten besteht keine Wartezeit.',
+      },
+      {
+        question: 'Wie funktioniert die Selbstbeteiligung (inkl. Deckelung)?',
+        answer: 'Du kannst die Selbstbeteiligung wahlweise mit 0 %, 10 % oder 20 % vereinbaren. Bei 10 % zahlst du 10 % der Tierarztrechnung selbst, jedoch maximal 500 € pro Rechnung. Bei 20 % sind es maximal 1.000 € pro Rechnung. Dadurch bleibt dein Eigenanteil auch bei hohen Rechnungen planbar.',
+      },
+      {
+        question: 'Wie hoch sind die Leistungen für Behandlungen ohne OP im Vollschutz?',
+        answer: 'Im Vollschutz sind Behandlungen ohne Operation bis zu 1.000 € (Basis), 2.000 € (Smart), 4.000 € (Komfort) bzw. 8.000 € (Premium) pro Versicherungsjahr versichert.',
+      },
+      {
+        question: 'Welche Vorsorgeleistungen sind enthalten und was ist der Vorsorgebonus?',
+        answer: 'Ab Smart sind Basisvorsorge-Leistungen (z. B. Floh- & Zeckenbekämpfung, Entwurmung, Impfungen nach StiKo Vet sowie die einmalige Kennzeichnung per Mikrochip) bis zu 50 € (Smart) bzw. bis zu 100 € (Komfort/Premium) pro Versicherungsjahr versichert. Zusätzlich gibt es einen Vorsorgebonus: 50 € nach 1 und 150 € nach 2 unmittelbar aufeinanderfolgenden leistungsfreien Jahren.',
+      },
     ] satisfies FaqItem[],
   },
   categoryB: {
     title: 'Wechseloption',
     items: [
       {
-        question: 'Was ist die Wechseloption?',
-        answer:
-          'Die Wechseloption ist ein optionaler Zusatzbaustein, den du einmalig beim Abschluss deines Vertrages zubuchen kannst. Sie gibt dir das Recht, einmalig in einen höherwertigen Tarif zu wechseln – ohne erneute Gesundheitsprüfung deines Hundes.',
-      },
-      { question: 'Wie buche ich die Wechseloption?', answer: '[TBD]' },
-      { question: 'Wann kann ich die Wechseloption nutzen?', answer: '[TBD]' },
-      {
-        question: 'Kann ich die Wechseloption mehrmals nutzen?',
-        answer: 'Nein. Die Wechseloption kann nur einmal während der gesamten Vertragslaufzeit genutzt werden.',
+        question: 'Wann kann ich den Zusatzbaustein „Wechseloption" abschließen?',
+        answer: 'Den Zusatzbaustein „Wechseloption" kannst du einmalig beim ersten Abschluss der neuen Hundekrankenversicherung abschließen – entweder im Neuantrag oder im Ersatzantrag.',
       },
       {
-        question: 'Von welchem Tarif kann ich in welchen wechseln?',
-        answer:
-          'Du kannst von jedem Tarif in einen höherwertigen Tarif wechseln. Beispiel: von Basis zu Smart, Komfort oder Premium.',
+        question: 'Welche Wechseloptionen bietet der Zusatzbaustein?',
+        answer: 'Mit dem Zusatzbaustein sind Vertragsverbesserungen einmalig ohne erneute Gesundheitsprüfung möglich. Dazu zählen der Wechsel der Linie, der Wechsel zwischen OP-Schutz und Vollschutz sowie die Reduzierung der Selbstbeteiligung.',
       },
-      { question: 'Was kostet der Baustein?', answer: '[TBD]' },
+      {
+        question: 'Ist der Wechsel in eine höherwertige Linie ohne Gesundheitsprüfung möglich?',
+        answer: 'Ja – allerdings nur, wenn der Zusatzbaustein „Wechseloption" abgeschlossen wurde.',
+      },
+      {
+        question: 'Ist ein Wechsel auch ohne den Zusatzbaustein möglich?',
+        answer: 'Ja. Leistungsverbesserungen sind auch ohne Zusatzbaustein möglich – dann jedoch nur mit erneuter Gesundheitsprüfung. Diese kann im Folgevertrag ggf. zu Leistungsausschlüssen führen.',
+      },
+      {
+        question: 'Gibt es Wartezeiten für den Wechselbaustein?',
+        answer: 'Teilweise. Für neu hinzukommende Leistungen greifen die jeweiligen Wartezeiten (z. B. beim Wechsel vom OP-Schutz in den Vollschutz).',
+      },
+      {
+        question: 'Gibt es eine Frist für den Einsatz des Wechselbausteins?',
+        answer: 'Nein. Der Zusatzbaustein „Wechseloption" kann einmalig und ohne feste Frist während der gesamten Vertragslaufzeit genutzt werden.',
+      },
+      {
+        question: 'Sind mehrere Verbesserungen gleichzeitig möglich?',
+        answer: 'Ja, mehrere Verbesserungen bzw. Wechsel sind gleichzeitig möglich.',
+      },
     ] satisfies FaqItem[],
   },
 } as const
@@ -354,14 +507,12 @@ export const FAQ = {
 // ─────────────────────────────────────────────
 export const CTA = {
   title: 'Wir beraten dich gerne',
-  subtitle: 'Unser Team steht dir persönlich zur Verfügung – kostenlos und unverbindlich.',
+  subtitle: 'Unsere Experten stehen dir mit Rat und Tat zur Seite – ob bei konkreten Fragen oder individuellen Anliegen. Lass uns gemeinsam die beste Lösung für dich finden.',
   button: 'Jetzt auf WhatsApp schreiben',
 } as const
 
 export const CONTACT = {
   email: 'support@hundefairsichert.de',
-  // whatsapp: [TBD]
-  // phone: [TBD]
 } as const
 
 // ─────────────────────────────────────────────

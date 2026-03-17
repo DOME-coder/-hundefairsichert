@@ -19,9 +19,14 @@ export default function Team() {
           <h2 className="font-heading text-[1.625rem] md:text-[2.25rem] font-semibold text-brand-text">
             {TEAM.title}
           </h2>
-          <p className="mt-3 font-body text-base text-brand-grayMid">
+          <p className="mt-3 font-heading text-base text-brand-grayMid">
             {TEAM.subtitle}
           </p>
+          {'description' in TEAM && (
+            <p className="mt-4 font-heading text-sm text-brand-grayMid leading-[1.7] max-w-3xl mx-auto">
+              {TEAM.description}
+            </p>
+          )}
         </motion.div>
 
         <div className="mt-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
