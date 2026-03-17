@@ -3,15 +3,7 @@
 import { useState, useEffect } from 'react'
 import { Menu, X } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
-
-const NAV_LINKS = [
-  { label: 'Start', href: '#hero' },
-  { label: 'Vorteile', href: '#vorteile' },
-  { label: 'Vergleich Tarife', href: '#tarife' },
-  { label: 'Im Versicherungsfall', href: '#versicherungsfall' },
-  { label: 'FAQs', href: '#faq' },
-  { label: 'Wissenswertes', href: '#wissenswertes' },
-]
+import { SITE, NAV_LINKS } from '@/lib/constants'
 
 export default function Header() {
   const [scrolled, setScrolled] = useState(false)
@@ -45,7 +37,7 @@ export default function Header() {
             href="/"
             className="font-heading font-bold text-xl text-brand-text hover:text-brand-accent transition-colors"
           >
-            HundeFAIRsichert
+            {SITE.name}
           </a>
 
           {/* Desktop Navigation */}

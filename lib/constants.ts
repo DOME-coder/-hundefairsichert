@@ -1,4 +1,20 @@
 // ─────────────────────────────────────────────
+// Allgemein / Navigation
+// ─────────────────────────────────────────────
+export const SITE = {
+  name: 'HundeFAIRsichert',
+} as const
+
+export const NAV_LINKS = [
+  { label: 'Start', href: '#hero' },
+  { label: 'Vorteile', href: '#vorteile' },
+  { label: 'Vergleich Tarife', href: '#tarife' },
+  { label: 'Im Versicherungsfall', href: '#versicherungsfall' },
+  { label: 'Wissenswertes', href: '#wissenswertes' },
+  { label: 'FAQs', href: '#faq' },
+] as const
+
+// ─────────────────────────────────────────────
 // Hero
 // ─────────────────────────────────────────────
 export const HERO = {
@@ -15,7 +31,11 @@ export const TEAM = {
   title: 'Das sind wir',
   subtitle: 'Dein Team bei SENATOR Versicherungsmakler GmbH',
   // members: [TBD – Fotos und Namen vom Auftraggeber]
-  members: [] as Array<{ name: string; role: string; image: string }>,
+  members: [
+    { name: '[TBD]', role: '[TBD]', image: '' },
+    { name: '[TBD]', role: '[TBD]', image: '' },
+    { name: '[TBD]', role: '[TBD]', image: '' },
+  ] as Array<{ name: string; role: string; image: string }>,
 } as const
 
 // ─────────────────────────────────────────────
@@ -66,11 +86,48 @@ export const TARIF_TOGGLE_OPTIONS: [TarifToggle, TarifToggle] = [
 
 export const TARIF_STUFEN: TarifStufe[] = ['Basis', 'Smart', 'Komfort', 'Premium']
 
+export interface TarifFeature {
+  label: string
+  included: [boolean, boolean, boolean, boolean] // Basis, Smart, Komfort, Premium
+}
+
+export interface TarifPlan {
+  features: TarifFeature[]
+  prices: [string, string, string, string] // Basis, Smart, Komfort, Premium
+}
+
+// [TBD – Leistungsdetails und Preise vom Auftraggeber]
+export const TARIF_DATA: Record<TarifToggle, TarifPlan> = {
+  'OP-Schutz': {
+    features: [
+      { label: 'Operationen nach Unfall', included: [true, true, true, true] },
+      { label: 'Operationen nach Krankheit', included: [false, true, true, true] },
+      { label: 'Nachbehandlung bis 15 Tage', included: [false, false, true, true] },
+      { label: 'Freie Tierarztwahl', included: [true, true, true, true] },
+      { label: 'Direktabrechnung Tierarzt', included: [false, false, true, true] },
+      { label: 'Auslandsschutz', included: [false, false, false, true] },
+    ],
+    prices: ['[TBD]', '[TBD]', '[TBD]', '[TBD]'],
+  },
+  'Vollschutz': {
+    features: [
+      { label: 'Alle OP-Schutz-Leistungen', included: [true, true, true, true] },
+      { label: 'Ambulante Behandlungen', included: [false, true, true, true] },
+      { label: 'Vorsorgeuntersuchungen', included: [false, false, true, true] },
+      { label: 'Alternative Heilmethoden', included: [false, false, true, true] },
+      { label: 'Physiotherapie', included: [false, false, false, true] },
+      { label: 'Auslandsschutz', included: [false, false, true, true] },
+    ],
+    prices: ['[TBD]', '[TBD]', '[TBD]', '[TBD]'],
+  },
+}
+
 export const TARIF = {
   title: 'Vergleich unserer Tarife',
   subtitle: 'Finde den Tarif, der am besten zu deinem Hund passt',
-  // prices: [TBD – Preise vom Auftraggeber]
-  // features: [TBD – Leistungsdetails vom Auftraggeber]
+  columnHeader: 'Leistung',
+  highlightBadge: 'Beliebteste Wahl',
+  priceLabel: 'Preis / Monat',
   wechseloption: {
     title: 'Wechseloption – Dein Upgrade ohne Risiko',
     badge: 'Einmalig zubuchbar',
@@ -143,6 +200,7 @@ export interface HotspotItem {
   bodyPart: string
   description: string
   frequency: string
+  position: { x: number; y: number }
 }
 
 export const WISSENSWERTES = {
@@ -156,6 +214,7 @@ export const WISSENSWERTES = {
       description:
         'Der Kreuzbandriss ist die häufigste Operation beim Hund. Besonders betroffen sind größere Rassen. Die Behandlung erfordert in den meisten Fällen einen chirurgischen Eingriff mit anschließender Physiotherapie.',
       frequency: 'Häufigste OP beim Hund in Deutschland',
+      position: { x: 65, y: 70 },
     },
     {
       id: 2,
@@ -164,6 +223,7 @@ export const WISSENSWERTES = {
       description:
         'Die Magendrehung ist ein lebensbedrohlicher Notfall, der sofortiges Handeln erfordert. Besonders gefährdet sind große Rassen mit tiefer Brust wie Deutsche Dogge oder Rottweiler.',
       frequency: 'Häufig bei großen Rassen',
+      position: { x: 45, y: 50 },
     },
     {
       id: 3,
@@ -172,6 +232,7 @@ export const WISSENSWERTES = {
       description:
         'Eine genetisch bedingte Fehlentwicklung des Hüftgelenks, die zu Schmerzen und Bewegungseinschränkungen führt. Betrifft vor allem große und mittelgroße Rassen.',
       frequency: 'Häufig bei großen und mittelgroßen Rassen',
+      position: { x: 60, y: 60 },
     },
     {
       id: 4,
@@ -180,6 +241,7 @@ export const WISSENSWERTES = {
       description:
         'Hauterkrankungen und Allergien gehören zu den häufigsten chronischen Erkrankungen beim Hund. Sie können durch Umweltfaktoren, Ernährung oder Parasiten ausgelöst werden.',
       frequency: 'Eine der häufigsten chronischen Erkrankungen',
+      position: { x: 50, y: 30 },
     },
     {
       id: 5,
@@ -188,6 +250,7 @@ export const WISSENSWERTES = {
       description:
         'Ohrenentzündungen treten besonders häufig bei Hunden mit Hängeohren auf. Sie können akut oder chronisch verlaufen und erfordern oft eine längere Behandlung.',
       frequency: 'Sehr häufig, besonders bei Schlappohrrassen',
+      position: { x: 20, y: 20 },
     },
     {
       id: 6,
@@ -196,6 +259,7 @@ export const WISSENSWERTES = {
       description:
         'Zahnstein, Parodontose und Zahnextraktionen sind bei Hunden weit verbreitet. Regelmäßige Zahnpflege kann das Risiko reduzieren, aber nicht immer verhindern.',
       frequency: 'Sehr häufig ab dem mittleren Alter',
+      position: { x: 18, y: 35 },
     },
     {
       id: 7,
@@ -204,6 +268,7 @@ export const WISSENSWERTES = {
       description:
         'Häufige Augenerkrankungen beim Hund sind Katarakt (grauer Star), Entropium (eingerolltes Augenlid) und Trockenes Auge. Manche Rassen sind genetisch stärker gefährdet.',
       frequency: 'Häufig bei bestimmten Rassen',
+      position: { x: 15, y: 25 },
     },
     {
       id: 8,
@@ -212,6 +277,7 @@ export const WISSENSWERTES = {
       description:
         'Bandscheibenvorfälle können zu starken Schmerzen oder Lähmungserscheinungen führen. Besonders betroffen sind Rassen mit langen Rücken wie Dackel, Beagle oder Basset Hound.',
       frequency: 'Häufig bei Langzucht-Rassen',
+      position: { x: 50, y: 45 },
     },
     {
       id: 9,
@@ -220,6 +286,7 @@ export const WISSENSWERTES = {
       description:
         'Tumore können bei Hunden an verschiedenen Körperstellen auftreten. Ältere Hunde sind besonders gefährdet. Eine frühe Erkennung durch regelmäßige Vorsorgeuntersuchungen ist entscheidend.',
       frequency: 'Häufig bei älteren Hunden',
+      position: { x: 40, y: 40 },
     },
     {
       id: 10,
@@ -228,6 +295,7 @@ export const WISSENSWERTES = {
       description:
         'Erbrechen, Durchfall und Magenprobleme gehören zu den häufigsten Gründen für einen Tierarztbesuch. Ursachen können Ernährungsfehler, Fremdkörper oder Infektionen sein.',
       frequency: 'Häufigste Gründe für Tierarztbesuche',
+      position: { x: 42, y: 52 },
     },
   ] satisfies HotspotItem[],
 } as const
@@ -241,6 +309,7 @@ export interface FaqItem {
 }
 
 export const FAQ = {
+  title: 'Häufig gestellte Fragen',
   categoryA: {
     title: 'Allgemeine Fragen',
     items: [
