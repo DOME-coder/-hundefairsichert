@@ -6,6 +6,7 @@ import Image from 'next/image'
 import { BarChart3 } from 'lucide-react'
 import { WISSENSWERTES } from '@/lib/constants'
 import Accordion from '@/components/ui/Accordion'
+import SectionHeader from '@/components/ui/SectionHeader'
 
 export default function Wissenswertes() {
   const [activeHotspot, setActiveHotspot] = useState<number | null>(null)
@@ -45,26 +46,20 @@ export default function Wissenswertes() {
   }))
 
   return (
-    <section id="wissenswertes" className="bg-white py-12 md:py-20">
-      <div className="max-w-content mx-auto px-6">
-        {/* Header */}
-        <motion.div
-          className="text-center"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, ease: 'easeOut' }}
-        >
-          <h2 className="font-heading text-[1.625rem] md:text-[2.25rem] font-semibold text-brand-text">
-            {WISSENSWERTES.title}
-          </h2>
-          <p className="mt-3 font-heading text-base text-brand-grayMid">
-            {WISSENSWERTES.subtitle}
-          </p>
-          <p className="mt-2 font-heading text-sm text-brand-accent font-medium">
-            Fahre mit der Maus über die Punkte, um mehr zu erfahren
-          </p>
-        </motion.div>
+    <section id="wissenswertes" className="relative overflow-hidden bg-white py-20 md:py-32">
+      <span
+        aria-hidden
+        className="pointer-events-none absolute -right-40 top-1/4 h-[500px] w-[500px] rounded-full bg-brand-accent/[0.035] blur-3xl animate-float-delayed"
+      />
+      <div className="relative mx-auto max-w-content px-6">
+        <SectionHeader
+          eyebrow="Wissenswertes"
+          title={WISSENSWERTES.title}
+          subtitle={WISSENSWERTES.subtitle}
+        />
+        <p className="mt-4 text-center font-heading text-sm font-medium text-brand-accent">
+          Fahre mit der Maus über die Punkte, um mehr zu erfahren
+        </p>
 
         {/* Desktop: Image with hotspots */}
         <motion.div
@@ -121,26 +116,26 @@ export default function Wissenswertes() {
                     }
                   }}
                 >
-                  {/* Pulse ring – only when NOT active */}
+                  {/* Dual concentric ripple rings */}
                   {!isActive && (
-                    <span className="absolute -inset-2 rounded-full bg-brand-accent/30 animate-ping" />
-                  )}
-                  {!isActive && (
-                    <span className="absolute -inset-1 rounded-full bg-brand-accent/20" />
+                    <>
+                      <span className="pointer-events-none absolute inset-0 -m-1 rounded-full bg-brand-accent/40 animate-ripple" />
+                      <span className="pointer-events-none absolute inset-0 -m-1 rounded-full bg-brand-accent/30 animate-ripple-delay" />
+                    </>
                   )}
 
-                  {/* Hotspot button */}
+                  {/* Hotspot dot */}
                   <div
-                    className={`relative w-9 h-9 rounded-full flex items-center justify-center cursor-pointer transition-all duration-200 shadow-lg ${
+                    className={`relative flex h-10 w-10 items-center justify-center rounded-full ring-2 ring-white shadow-brand-glow cursor-pointer transition-all duration-500 ease-emil ${
                       isActive
-                        ? 'bg-brand-accentDark scale-110 ring-4 ring-brand-accent/40'
+                        ? 'scale-110 bg-gradient-to-br from-brand-accentDark to-[#A86237]'
                         : activeHotspot !== null
-                          ? 'opacity-0 pointer-events-none'
-                          : 'bg-brand-accent hover:scale-110 hover:shadow-xl'
+                          ? 'pointer-events-none opacity-0'
+                          : 'bg-gradient-to-br from-brand-accent to-brand-accentDark hover:scale-110'
                     }`}
                     aria-label={`${hotspot.id}. ${hotspot.title}`}
                   >
-                    <span className="font-heading text-sm font-bold text-white">
+                    <span className="font-heading text-sm font-bold text-white drop-shadow-[0_1px_2px_rgba(0,0,0,0.3)]">
                       {hotspot.id}
                     </span>
                   </div>
@@ -149,11 +144,11 @@ export default function Wissenswertes() {
                   <AnimatePresence>
                     {isActive && (
                       <motion.div
-                        initial={{ scale: 0.9, opacity: 0 }}
+                        initial={{ scale: 0.85, opacity: 0 }}
                         animate={{ scale: 1, opacity: 1 }}
-                        exit={{ scale: 0.9, opacity: 0 }}
-                        transition={{ duration: 0.15, ease: 'easeOut' }}
-                        className="absolute z-[60] w-[320px] bg-white border-2 border-brand-accent/30 rounded-2xl shadow-2xl p-6"
+                        exit={{ scale: 0.85, opacity: 0 }}
+                        transition={{ type: 'spring', stiffness: 320, damping: 22 }}
+                        className="absolute z-[60] w-[320px] rounded-2xl border border-brand-accent/30 bg-white/95 p-6 shadow-brand-lg backdrop-blur-md"
                         style={{
                           ...(hotspot.position.x > 55
                             ? { right: '3rem' }
@@ -161,6 +156,9 @@ export default function Wissenswertes() {
                           ...(hotspot.position.y > 50
                             ? { bottom: '-1rem' }
                             : { top: '-1rem' }),
+                          transformOrigin:
+                            (hotspot.position.x > 55 ? 'right ' : 'left ') +
+                            (hotspot.position.y > 50 ? 'bottom' : 'top'),
                         }}
                         onMouseEnter={() => {
                           if (!isTouchDevice) cancelCloseTimer()

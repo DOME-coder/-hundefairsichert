@@ -1,3 +1,5 @@
+import Link from 'next/link'
+import { ArrowLeft } from 'lucide-react'
 import Header from '@/components/layout/Header'
 import Footer from '@/components/layout/Footer'
 
@@ -7,7 +9,17 @@ export default function Impressum() {
       <Header />
       <main className="bg-white py-12 md:py-20">
         <div className="max-w-content mx-auto px-6">
-          <h1 className="font-heading text-[2rem] md:text-[3rem] font-bold text-brand-text">
+          <Link
+            href="/"
+            className="group inline-flex items-center gap-2 font-heading text-sm font-medium text-brand-grayMid transition-colors duration-300 hover:text-brand-accent"
+          >
+            <ArrowLeft
+              size={16}
+              className="transition-transform duration-300 group-hover:-translate-x-1"
+            />
+            <span>Zurück zur Startseite</span>
+          </Link>
+          <h1 className="mt-6 font-heading text-[2rem] md:text-[3rem] font-bold text-brand-text">
             Impressum
           </h1>
 

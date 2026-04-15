@@ -241,7 +241,7 @@ export const EXTRA_LEISTUNGEN = {
   subtitle: 'Zusätzliche Vorteile für deinen Hund',
   items: [
     {
-      image: '/images/hunde/dog-leash.jpg',
+      image: '/images/hunde/hero-dog.jpg',
       title: 'Lebenslange Absicherung',
       text: 'Wir versichern Hunde ab der achten Lebenswoche – ohne Maximalalter und mit gleichbleibenden Leistungen im Alter. Zudem verzichten wir ab dem vierten Versicherungsjahr auf unser ordentliches Kündigungsrecht zum Ablauf sowie auf unser Kündigungsrecht im Versicherungsfall.',
     },
@@ -378,7 +378,7 @@ export const WISSENSWERTES = {
       leistung: 'Im Vollschutz sind je nach Tarif bis zu 8.000 € pro Jahr für Heilbehandlungen, Untersuchungen, Medikamente abgedeckt.',
       kosten: 'bis zu 550 €',
       frequency: 'Sehr häufig bei Schlappohrrassen',
-      position: { x: 72, y: 22 },
+      position: { x: 66, y: 38 },
     },
     {
       id: 6,
@@ -388,7 +388,7 @@ export const WISSENSWERTES = {
       leistung: 'Operationen aufgrund einer Krankheit sind in allen Tarifen mitversichert. Nachbehandlung je nach Tarif bis zu 30 Tagen.',
       kosten: 'bis zu 2.800 €',
       frequency: 'Häufig bei älteren Hunden',
-      position: { x: 80, y: 25 },
+      position: { x: 72, y: 22 },
     },
     {
       id: 7,
@@ -520,7 +520,7 @@ export const CONTACT = {
 // ─────────────────────────────────────────────
 export const FOOTER = {
   company: 'SENATOR Versicherungsmakler GmbH',
-  copyright: '© 2025 SENATOR Versicherungsmakler GmbH',
+  copyright: '© 2026 SENATOR Versicherungsmakler GmbH',
   links: [
     { label: 'Impressum', href: '/impressum' },
     { label: 'Datenschutz', href: '/datenschutz' },

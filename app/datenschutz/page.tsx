@@ -1,3 +1,5 @@
+import Link from 'next/link'
+import { ArrowLeft } from 'lucide-react'
 import Header from '@/components/layout/Header'
 import Footer from '@/components/layout/Footer'
 
@@ -7,7 +9,17 @@ export default function Datenschutz() {
       <Header />
       <main className="bg-white py-12 md:py-20">
         <div className="max-w-content mx-auto px-6">
-          <h1 className="font-heading text-[2rem] md:text-[3rem] font-bold text-brand-text">
+          <Link
+            href="/"
+            className="group inline-flex items-center gap-2 font-heading text-sm font-medium text-brand-grayMid transition-colors duration-300 hover:text-brand-accent"
+          >
+            <ArrowLeft
+              size={16}
+              className="transition-transform duration-300 group-hover:-translate-x-1"
+            />
+            <span>Zurück zur Startseite</span>
+          </Link>
+          <h1 className="mt-6 font-heading text-[2rem] md:text-[3rem] font-bold text-brand-text">
             Datenschutz-Hinweis
           </h1>
 
@@ -48,7 +60,7 @@ export default function Datenschutz() {
 
               <h3 className="mt-4 text-lg font-semibold">Datenverarbeitung durch Facebook und Instagram</h3>
               <p className="mt-2 text-brand-grayMid">
-                Unsere Website kann Funktionen und Inhalte der sozialen Netzwerke Facebook und Instagram (Meta Platforms Inc., 1 Hacker Way, Menlo Park, CA 94025, USA) einbinden, wie z. B. Social Plugins, „Gefällt mir"-Buttons oder eingebettete Beiträge.
+                Unsere Website kann Funktionen und Inhalte der sozialen Netzwerke Facebook und Instagram (Meta Platforms Inc., 1 Hacker Way, Menlo Park, CA 94025, USA) einbinden, wie z. B. Social Plugins, „Gefällt mir“-Buttons oder eingebettete Beiträge.
               </p>
 
               <h4 className="mt-3 font-semibold">Verarbeitete Daten:</h4>
