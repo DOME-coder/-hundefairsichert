@@ -32,8 +32,8 @@ export default function Header() {
       <header
         className={`fixed inset-x-0 top-0 z-50 flex h-[60px] items-center transition-all duration-500 ease-emil md:h-[72px] ${
           scrolled
-            ? 'bg-white/75 backdrop-blur-2xl shadow-brand-sm border-b border-brand-border/60'
-            : 'bg-white/40 backdrop-blur-md border-b border-transparent'
+            ? 'translate-y-0 bg-white/75 backdrop-blur-2xl shadow-brand-sm border-b border-brand-border/60'
+            : '-translate-y-full'
         }`}
       >
         <div className="mx-auto flex w-full max-w-content items-center justify-between px-6">
@@ -77,8 +77,8 @@ export default function Header() {
         </div>
       </header>
 
-      {/* Spacer so content doesn't sit under the fixed header */}
-      <div aria-hidden className="h-[60px] md:h-[72px]" />
+      {/* Spacer – only when header is visible */}
+      {scrolled && <div aria-hidden className="h-[60px] md:h-[72px]" />}
 
       {/* Mobile Drawer */}
       <AnimatePresence>

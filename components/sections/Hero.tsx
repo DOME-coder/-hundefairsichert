@@ -94,27 +94,28 @@ export default function Hero() {
       />
 
       {/* Content */}
-      <div className="relative z-10 mx-auto flex max-w-content flex-col items-center px-6 pb-24 pt-16 text-center">
-        {/* Logo */}
+      <div className="relative z-10 mx-auto flex max-w-content flex-col items-center px-6 pb-28 pt-8 text-center">
+        {/* Logo — 448 × 160 */}
         <motion.div
           initial={{ opacity: 0, scale: 0.9, y: 12, filter: 'blur(8px)' }}
           animate={{ opacity: 1, scale: 1, y: 0, filter: 'blur(0px)' }}
           transition={{ duration: 1, ease: EMIL }}
-          className="mb-4"
+          className="mb-3"
         >
           <Image
             src="/images/logo-white.png"
             alt="HundeFAIRsichert Logo"
-            width={400}
-            height={400}
-            className="h-48 w-48 drop-shadow-[0_8px_32px_rgba(0,0,0,0.4)] md:h-64 md:w-64 lg:h-80 lg:w-80"
+            width={448}
+            height={160}
+            className="h-[160px] w-[448px] object-contain drop-shadow-[0_8px_32px_rgba(0,0,0,0.4)]"
             priority
           />
         </motion.div>
 
-        {/* Headline */}
+        {/* Headline — max 1152 × 170 */}
         <motion.h1
-          className="font-heading text-display font-bold text-white drop-shadow-[0_4px_24px_rgba(0,0,0,0.75)]"
+          className="max-w-[1152px] font-heading text-display font-bold leading-tight text-white drop-shadow-[0_4px_24px_rgba(0,0,0,0.75)]"
+          style={{ minHeight: '170px', display: 'flex', alignItems: 'center' }}
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: EMIL, delay: 0.35 }}
@@ -122,8 +123,10 @@ export default function Hero() {
           {HERO.headline}
         </motion.h1>
 
+        {/* Subtitle — max 672 × 56 */}
         <motion.p
-          className="mt-4 max-w-2xl font-heading text-base leading-[1.75] text-white/90 drop-shadow-[0_2px_12px_rgba(0,0,0,0.6)] md:text-lg"
+          className="mt-3 max-w-[672px] font-heading text-base leading-[1.75] text-white/90 drop-shadow-[0_2px_12px_rgba(0,0,0,0.6)] md:text-lg"
+          style={{ minHeight: '56px' }}
           initial={{ opacity: 0, y: 24, filter: 'blur(6px)' }}
           animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
           transition={{ duration: 0.8, ease: EMIL, delay: 0.65 }}
@@ -131,13 +134,17 @@ export default function Hero() {
           {HERO.subline}
         </motion.p>
 
+        {/* CTA Button — 323 × 56 */}
         <motion.div
-          className="mt-8"
+          className="mt-6"
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, ease: EMIL, delay: 0.85 }}
         >
-          <Button href={whatsappUrl} className="uppercase tracking-[0.18em]">
+          <Button
+            href={whatsappUrl}
+            className="w-[323px] h-[56px] uppercase tracking-[0.18em]"
+          >
             {HERO.cta}
           </Button>
         </motion.div>
