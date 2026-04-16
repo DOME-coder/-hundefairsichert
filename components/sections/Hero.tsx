@@ -15,15 +15,14 @@ export default function Hero() {
   const videoRef = useRef<HTMLVideoElement>(null)
   const sectionRef = useRef<HTMLElement>(null)
 
-  // Scroll-based parallax for the video background
   const { scrollYProgress } = useScroll({
     target: sectionRef,
     offset: ['start start', 'end start'],
   })
   const parallaxY = useTransform(scrollYProgress, [0, 1], ['-6%', '12%'])
+  const parallaxScale = useTransform(scrollYProgress, [0, 1], [1, 1.05])
   const indicatorOpacity = useTransform(scrollYProgress, [0, 0.3], [1, 0])
 
-  // Play/pause video based on visibility
   useEffect(() => {
     const video = videoRef.current
     const section = sectionRef.current
@@ -44,16 +43,18 @@ export default function Hero() {
     return () => observer.disconnect()
   }, [])
 
+  const headlineWords = HERO.headline.split(' ')
+
   return (
     <section
       ref={sectionRef}
       id="hero"
-      className="relative flex h-screen items-start justify-center overflow-hidden"
+      className="relative flex min-h-[100dvh] items-center justify-center overflow-hidden"
     >
       {/* Video Background with parallax */}
       <motion.div
-        className="pointer-events-none absolute -inset-y-[15%] inset-x-0 will-change-transform"
-        style={{ y: parallaxY }}
+        className="pointer-events-none absolute -inset-y-[10%] inset-x-0 will-change-transform"
+        style={{ y: parallaxY, scale: parallaxScale }}
       >
         <video
           ref={videoRef}
@@ -69,77 +70,97 @@ export default function Hero() {
         </video>
       </motion.div>
 
-      {/* Multi-layer overlays for depth */}
+      {/* Overlay 1 — radial */}
       <div
         aria-hidden
         className="absolute inset-0"
         style={{
           background:
-            'radial-gradient(ellipse at center, rgba(0,0,0,0.05) 0%, rgba(0,0,0,0.28) 60%, rgba(0,0,0,0.65) 100%)',
+            'radial-gradient(ellipse at center, rgba(0,0,0,0.05) 0%, rgba(0,0,0,0.25) 60%, rgba(0,0,0,0.65) 100%)',
         }}
       />
+      {/* Overlay 2 — linear */}
       <div
         aria-hidden
-        className="absolute inset-0 bg-gradient-to-b from-black/15 via-transparent to-black/40"
+        className="absolute inset-0"
+        style={{
+          background:
+            'linear-gradient(180deg, rgba(45,45,58,0.10) 0%, transparent 30%, transparent 70%, rgba(45,45,58,0.30) 100%)',
+        }}
       />
 
-      {/* Ambient accent blobs */}
+      {/* Blur blobs */}
       <span
         aria-hidden
-        className="pointer-events-none absolute -left-40 top-1/4 h-[520px] w-[520px] rounded-full bg-brand-accent/[0.08] blur-3xl animate-float"
+        className="pointer-events-none absolute -left-40 top-1/4 h-96 w-96 rounded-full bg-brand-accent/[0.06] blur-3xl animate-float"
       />
       <span
         aria-hidden
-        className="pointer-events-none absolute -right-40 bottom-1/4 h-[460px] w-[460px] rounded-full bg-brand-accent/[0.06] blur-3xl animate-float-delayed"
+        className="pointer-events-none absolute -right-40 bottom-1/4 h-[28rem] w-[28rem] rounded-full bg-brand-accent/[0.05] blur-3xl animate-float-delayed"
       />
 
       {/* Content */}
-      <div className="relative z-10 mx-auto flex max-w-content flex-col items-center px-6 pt-[48px] text-center">
+      <div className="relative z-10 mx-auto flex max-w-content flex-col items-center px-6 py-20 text-center">
         {/* Logo */}
         <motion.div
-          initial={{ opacity: 0, scale: 0.9, y: 12, filter: 'blur(8px)' }}
+          initial={{ opacity: 0, scale: 0.9, y: 16, filter: 'blur(8px)' }}
           animate={{ opacity: 1, scale: 1, y: 0, filter: 'blur(0px)' }}
           transition={{ duration: 1, ease: EMIL }}
-          className="mb-0"
+          className="mb-8"
         >
           <Image
             src="/images/logo-white.png"
             alt="HundeFAIRsichert Logo"
-            width={360}
-            height={360}
-            className="h-[220px] w-[220px] drop-shadow-[0_8px_32px_rgba(0,0,0,0.4)] md:h-[300px] md:w-[300px] lg:h-[360px] lg:w-[360px]"
+            width={448}
+            height={448}
+            className="w-56 md:w-72 lg:w-[24rem] xl:w-[28rem] h-auto drop-shadow-[0_4px_24px_rgba(0,0,0,0.45)]"
             priority
           />
         </motion.div>
 
-        {/* Headline */}
-        <motion.h1
-          className="font-heading text-[2.5rem] md:text-[3.5rem] lg:text-[4rem] font-bold leading-[1.1] text-white drop-shadow-[0_4px_24px_rgba(0,0,0,0.75)]"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: EMIL, delay: 0.35 }}
-        >
-          {HERO.headline}
-        </motion.h1>
+        {/* Headline — word-by-word reveal */}
+        <h1 className="font-heading text-display font-bold text-white drop-shadow-[0_4px_24px_rgba(0,0,0,0.55)]">
+          {headlineWords.map((word, i) => (
+            <span
+              key={i}
+              className="inline-block overflow-hidden align-bottom"
+              style={{ paddingBottom: '0.1em' }}
+            >
+              <motion.span
+                className="inline-block"
+                initial={{ y: '100%', opacity: 0, filter: 'blur(8px)' }}
+                animate={{ y: 0, opacity: 1, filter: 'blur(0px)' }}
+                transition={{
+                  duration: 0.85,
+                  ease: EMIL,
+                  delay: 0.35 + i * 0.045,
+                }}
+              >
+                {word}
+                {i < headlineWords.length - 1 && '\u00A0'}
+              </motion.span>
+            </span>
+          ))}
+        </h1>
 
-        {/* Subtitle */}
+        {/* Subline */}
         <motion.p
-          className="mt-2 max-w-[600px] font-heading text-sm leading-[1.8] text-white/85 drop-shadow-[0_2px_12px_rgba(0,0,0,0.6)] md:text-base"
-          initial={{ opacity: 0, y: 24, filter: 'blur(6px)' }}
-          animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
-          transition={{ duration: 0.8, ease: EMIL, delay: 0.65 }}
+          className="mt-6 max-w-2xl font-body text-base leading-[1.7] text-white/90 drop-shadow-[0_2px_12px_rgba(0,0,0,0.5)] md:text-lg"
+          initial={{ opacity: 0, y: 18 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.85, ease: EMIL, delay: 0.7 }}
         >
           {HERO.subline}
         </motion.p>
 
         {/* CTA Button */}
         <motion.div
-          className="mt-4"
-          initial={{ opacity: 0, y: 24 }}
+          className="mt-10"
+          initial={{ opacity: 0, y: 18 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, ease: EMIL, delay: 0.85 }}
+          transition={{ duration: 0.85, ease: EMIL, delay: 0.85 }}
         >
-          <Button href={whatsappUrl} className="uppercase tracking-[0.18em]">
+          <Button href={whatsappUrl} className="px-8 py-3.5 md:px-12 md:py-4 text-lg uppercase tracking-wider">
             {HERO.cta}
           </Button>
         </motion.div>
@@ -148,13 +169,13 @@ export default function Hero() {
       {/* Scroll indicator */}
       <motion.div
         aria-hidden
-        className="pointer-events-none absolute bottom-8 left-1/2 z-10 flex -translate-x-1/2 flex-col items-center gap-3"
+        className="pointer-events-none absolute bottom-3 left-1/2 z-10 flex -translate-x-1/2 flex-col items-center gap-3"
         style={{ opacity: indicatorOpacity }}
       >
-        <span className="font-heading text-[10px] uppercase tracking-[0.35em] text-white/60">
+        <span className="font-heading text-[11px] font-semibold uppercase tracking-[0.2em] text-white/70 drop-shadow-[0_1px_4px_rgba(0,0,0,0.5)]">
           Scroll
         </span>
-        <span className="relative block h-10 w-[1.5px] overflow-hidden bg-white/15">
+        <span className="relative block h-12 w-px overflow-hidden bg-white/40">
           <span className="absolute inset-0 origin-top animate-scroll-draw bg-gradient-to-b from-transparent via-brand-accent to-transparent" />
         </span>
       </motion.div>
