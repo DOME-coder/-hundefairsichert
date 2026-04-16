@@ -100,20 +100,20 @@ export default function Hero() {
       />
 
       {/* Content */}
-      <div className="relative z-10 mx-auto flex max-w-content flex-col items-center px-6 py-20 text-center">
+      <div className="relative z-10 mx-auto flex max-w-content flex-col items-center px-6 py-10 md:py-14 text-center">
         {/* Logo */}
         <motion.div
           initial={{ opacity: 0, scale: 0.9, y: 16, filter: 'blur(8px)' }}
           animate={{ opacity: 1, scale: 1, y: 0, filter: 'blur(0px)' }}
           transition={{ duration: 1, ease: EMIL }}
-          className="mb-8"
+          className="mb-3 md:mb-4"
         >
           <Image
             src="/images/logo-white.png"
             alt="HundeFAIRsichert Logo"
-            width={448}
-            height={448}
-            className="w-56 md:w-72 lg:w-[24rem] xl:w-[28rem] h-auto drop-shadow-[0_4px_24px_rgba(0,0,0,0.45)]"
+            width={288}
+            height={288}
+            className="w-40 md:w-56 lg:w-64 xl:w-72 h-auto drop-shadow-[0_4px_24px_rgba(0,0,0,0.45)]"
             priority
           />
         </motion.div>
@@ -145,7 +145,7 @@ export default function Hero() {
 
         {/* Subline */}
         <motion.p
-          className="mt-6 max-w-2xl font-body text-base leading-[1.7] text-white/90 drop-shadow-[0_2px_12px_rgba(0,0,0,0.5)] md:text-lg"
+          className="mt-3 max-w-2xl font-body text-sm leading-[1.7] text-white/90 drop-shadow-[0_2px_12px_rgba(0,0,0,0.5)] md:text-base"
           initial={{ opacity: 0, y: 18 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.85, ease: EMIL, delay: 0.7 }}
@@ -155,12 +155,12 @@ export default function Hero() {
 
         {/* CTA Button */}
         <motion.div
-          className="mt-10"
+          className="mt-5 md:mt-6"
           initial={{ opacity: 0, y: 18 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.85, ease: EMIL, delay: 0.85 }}
         >
-          <Button href={whatsappUrl} className="px-8 py-3.5 md:px-12 md:py-4 text-lg uppercase tracking-wider">
+          <Button href={whatsappUrl} className="px-8 py-3 md:px-10 md:py-3.5 uppercase tracking-wider">
             {HERO.cta}
           </Button>
         </motion.div>
