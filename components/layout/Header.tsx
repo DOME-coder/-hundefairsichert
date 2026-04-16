@@ -33,7 +33,7 @@ export default function Header() {
         className={`fixed inset-x-0 top-0 z-50 flex h-[60px] items-center transition-all duration-500 ease-emil md:h-[72px] ${
           scrolled
             ? 'bg-white/75 backdrop-blur-2xl shadow-brand-sm border-b border-brand-border/60'
-            : 'bg-transparent border-b border-transparent'
+            : ''
         }`}
       >
         <div className="mx-auto flex w-full max-w-content items-center justify-between px-6">
@@ -77,7 +77,6 @@ export default function Header() {
         </div>
       </header>
 
-      <div aria-hidden className="h-[60px] md:h-[72px]" />
 
       {/* Mobile Drawer */}
       <AnimatePresence>

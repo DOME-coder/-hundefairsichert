@@ -48,7 +48,7 @@ export default function Hero() {
     <section
       ref={sectionRef}
       id="hero"
-      className="relative flex min-h-[88vh] items-center justify-center overflow-hidden"
+      className="relative flex h-screen items-start justify-center overflow-hidden"
     >
       {/* Video Background with parallax */}
       <motion.div
@@ -94,20 +94,20 @@ export default function Hero() {
       />
 
       {/* Content */}
-      <div className="relative z-10 mx-auto flex max-w-content flex-col items-center px-6 py-12 text-center">
+      <div className="relative z-10 mx-auto flex max-w-content flex-col items-center px-6 pt-[72px] text-center">
         {/* Logo */}
         <motion.div
           initial={{ opacity: 0, scale: 0.9, y: 12, filter: 'blur(8px)' }}
           animate={{ opacity: 1, scale: 1, y: 0, filter: 'blur(0px)' }}
           transition={{ duration: 1, ease: EMIL }}
-          className="mb-2"
+          className="mb-1"
         >
           <Image
             src="/images/logo-white.png"
             alt="HundeFAIRsichert Logo"
-            width={280}
-            height={280}
-            className="h-[180px] w-[180px] drop-shadow-[0_8px_32px_rgba(0,0,0,0.4)] md:h-[240px] md:w-[240px] lg:h-[280px] lg:w-[280px]"
+            width={320}
+            height={320}
+            className="h-[200px] w-[200px] drop-shadow-[0_8px_32px_rgba(0,0,0,0.4)] md:h-[280px] md:w-[280px] lg:h-[320px] lg:w-[320px]"
             priority
           />
         </motion.div>
@@ -124,7 +124,7 @@ export default function Hero() {
 
         {/* Subtitle */}
         <motion.p
-          className="mt-4 max-w-[600px] font-heading text-sm leading-[1.8] text-white/85 drop-shadow-[0_2px_12px_rgba(0,0,0,0.6)] md:text-base"
+          className="mt-2 max-w-[600px] font-heading text-sm leading-[1.8] text-white/85 drop-shadow-[0_2px_12px_rgba(0,0,0,0.6)] md:text-base"
           initial={{ opacity: 0, y: 24, filter: 'blur(6px)' }}
           animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
           transition={{ duration: 0.8, ease: EMIL, delay: 0.65 }}
@@ -134,7 +134,7 @@ export default function Hero() {
 
         {/* CTA Button */}
         <motion.div
-          className="mt-6"
+          className="mt-4"
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, ease: EMIL, delay: 0.85 }}
