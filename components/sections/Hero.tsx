@@ -100,13 +100,13 @@ export default function Hero() {
       />
 
       {/* Content */}
-      <div className="relative z-10 mx-auto flex max-w-content flex-col items-center px-6 py-10 md:py-14 text-center">
+      <div className="relative z-10 mx-auto flex max-w-content flex-col items-center px-6 pt-6 pb-8 md:pt-8 md:pb-10 text-center">
         {/* Logo */}
         <motion.div
           initial={{ opacity: 0, scale: 0.9, y: 16, filter: 'blur(8px)' }}
           animate={{ opacity: 1, scale: 1, y: 0, filter: 'blur(0px)' }}
           transition={{ duration: 1, ease: EMIL }}
-          className="mb-3 md:mb-4"
+          className="mb-2 md:mb-3"
         >
           <Image
             src="/images/logo-white.png"
