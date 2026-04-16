@@ -4,77 +4,84 @@ import Image from 'next/image'
 import { motion } from 'framer-motion'
 import { Check } from 'lucide-react'
 import { VORTEILE } from '@/lib/constants'
+import SectionHeader from '@/components/ui/SectionHeader'
+
+const EMIL: [number, number, number, number] = [0.32, 0.72, 0, 1]
 
 const ICONS: Record<string, string> = {
   'OP-Schutz': '/images/icons/stethoscope.jpg',
-  'Vollschutz': '/images/icons/health.jpg',
+  Vollschutz: '/images/icons/health.jpg',
   'Flexible Selbstbeteiligung': '/images/icons/moneybag.jpg',
 }
 
 export default function Vorteile() {
-  return (
-    <section id="vorteile" className="bg-brand-beige py-12 md:py-20">
-      <div className="max-w-content mx-auto px-6">
-        <motion.div
-          className="text-center"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, ease: 'easeOut' }}
-        >
-          <h2 className="font-heading text-[1.625rem] md:text-[2.25rem] font-semibold text-brand-text">
-            {VORTEILE.title}
-          </h2>
-          <p className="mt-3 font-heading text-base text-brand-grayMid">
-            {VORTEILE.subtitle}
-          </p>
-          {'intro' in VORTEILE && (
-            <p className="mt-4 font-heading text-sm text-brand-grayMid leading-[1.7] max-w-3xl mx-auto">
-              {VORTEILE.intro}
-            </p>
-          )}
-        </motion.div>
+  const intro = 'intro' in VORTEILE ? (VORTEILE as { intro?: string }).intro : undefined
 
-        <div className="mt-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+  return (
+    <section id="vorteile" className="relative overflow-hidden bg-brand-beige py-20 md:py-32">
+      <span
+        aria-hidden
+        className="pointer-events-none absolute -left-40 top-1/4 h-[500px] w-[500px] rounded-full bg-brand-accent/[0.06] blur-3xl animate-float"
+      />
+      <span
+        aria-hidden
+        className="pointer-events-none absolute -right-40 bottom-1/4 h-[460px] w-[460px] rounded-full bg-brand-accentDark/[0.05] blur-3xl animate-float-delayed"
+      />
+
+      <div className="relative mx-auto max-w-content px-6">
+        <SectionHeader
+          eyebrow="Produkte"
+          title={VORTEILE.title}
+          subtitle={intro ?? VORTEILE.subtitle}
+        />
+
+        <div className="mt-14 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
           {VORTEILE.items.map((item, index) => {
             const iconSrc = ICONS[item.title]
 
             return (
               <motion.div
                 key={item.title}
-                className="bg-white border border-brand-border rounded-xl p-8 shadow-[0_2px_12px_rgba(0,0,0,0.06)] transition-all duration-200 hover:shadow-[0_4px_20px_rgba(0,0,0,0.1)] flex flex-col items-center text-center"
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, ease: 'easeOut', delay: index * 0.1 }}
-                whileHover={{ y: -4 }}
+                className="group gradient-border relative flex flex-col items-center overflow-hidden rounded-2xl border border-brand-border/60 bg-white/85 p-8 text-center shadow-brand-sm backdrop-blur-sm transition-all duration-500 ease-emil hover:-translate-y-2 hover:border-brand-accent/40 hover:shadow-brand-lg"
+                initial={{ opacity: 0, y: 24, scale: 0.97 }}
+                whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                viewport={{ once: true, amount: 0.2 }}
+                transition={{ duration: 0.9, ease: EMIL, delay: index * 0.1 }}
               >
+                {/* Top stripe */}
+                <span
+                  aria-hidden
+                  className="pointer-events-none absolute inset-x-0 top-0 h-[3px] bg-gradient-to-r from-brand-accent via-brand-accentDark to-brand-accent bg-[length:220%_100%] animate-gradient-drift"
+                />
+
                 {iconSrc && (
-                  <div className="w-16 h-16 rounded-full overflow-hidden">
+                  <div className="flex h-20 w-20 items-center justify-center rounded-2xl bg-brand-beige/70 ring-1 ring-brand-border/60 transition-all duration-500 ease-emil group-hover:bg-brand-accent/10 group-hover:ring-brand-accent/30 group-hover:shadow-brand-glow">
                     <Image
                       src={iconSrc}
                       alt={item.title}
-                      width={64}
-                      height={64}
-                      className="w-full h-full object-cover"
+                      width={56}
+                      height={56}
+                      className="h-14 w-14 rounded-xl object-cover transition-transform duration-500 ease-spring group-hover:-rotate-6 group-hover:scale-110"
                     />
                   </div>
                 )}
 
-                <h3 className="mt-5 font-heading text-[1.5rem] font-semibold text-brand-text">
+                <h3 className="mt-6 font-heading text-h3 font-semibold text-brand-text">
                   {item.title}
                 </h3>
 
-                <p className="mt-3 font-body text-base text-brand-grayMid leading-[1.7]">
+                <p className="mt-3 font-heading text-base leading-[1.75] text-brand-grayMid">
                   {item.description}
                 </p>
 
                 {item.bullets && (
-                  <ul className="mt-4 space-y-2 text-left w-full">
+                  <ul className="mt-5 w-full space-y-2.5 text-left">
                     {item.bullets.map((bullet) => (
-                      <li key={bullet} className="flex items-start gap-2">
-                        <Check size={18} className="text-brand-accent mt-0.5 shrink-0" />
-                        <span className="font-body text-sm text-brand-text">{bullet}</span>
+                      <li key={bullet} className="flex items-start gap-3">
+                        <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-brand-accent/10 ring-1 ring-brand-accent/30">
+                          <Check size={11} className="text-brand-accent" />
+                        </span>
+                        <span className="font-heading text-sm text-brand-text">{bullet}</span>
                       </li>
                     ))}
                   </ul>

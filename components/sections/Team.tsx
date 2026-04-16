@@ -4,63 +4,64 @@ import Image from 'next/image'
 import { motion } from 'framer-motion'
 import { User } from 'lucide-react'
 import { TEAM } from '@/lib/constants'
+import SectionHeader from '@/components/ui/SectionHeader'
+
+const EMIL: [number, number, number, number] = [0.32, 0.72, 0, 1]
 
 export default function Team() {
-  return (
-    <section id="team" className="bg-white py-12 md:py-20">
-      <div className="max-w-content mx-auto px-6">
-        <motion.div
-          className="text-center"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, ease: 'easeOut' }}
-        >
-          <h2 className="font-heading text-[1.625rem] md:text-[2.25rem] font-semibold text-brand-text">
-            {TEAM.title}
-          </h2>
-          <p className="mt-3 font-heading text-base text-brand-grayMid">
-            {TEAM.subtitle}
-          </p>
-          {'description' in TEAM && (
-            <p className="mt-4 font-heading text-sm text-brand-grayMid leading-[1.7] max-w-3xl mx-auto">
-              {TEAM.description}
-            </p>
-          )}
-        </motion.div>
+  const description = 'description' in TEAM ? (TEAM as { description?: string }).description : undefined
 
-        <div className="mt-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+  return (
+    <section id="team" className="relative overflow-hidden bg-white py-20 md:py-32">
+      <span
+        aria-hidden
+        className="pointer-events-none absolute left-1/2 top-0 h-[400px] w-[900px] -translate-x-1/2 rounded-full bg-brand-accent/[0.04] blur-3xl"
+      />
+
+      <div className="relative mx-auto max-w-content px-6">
+        <SectionHeader
+          eyebrow="Team"
+          title={TEAM.title}
+          subtitle={description ?? TEAM.subtitle}
+        />
+
+        <div className="mt-14 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {TEAM.members.map((member, index) => (
             <motion.div
               key={index}
-              className="bg-white border border-brand-border rounded-xl p-8 shadow-[0_2px_12px_rgba(0,0,0,0.06)] transition-all duration-200 hover:shadow-[0_4px_20px_rgba(0,0,0,0.1)] flex flex-col items-center text-center"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, ease: 'easeOut', delay: index * 0.1 }}
-              whileHover={{ y: -4 }}
+              className="group gradient-border relative flex flex-col items-center overflow-hidden rounded-2xl border border-brand-border/60 bg-white/85 p-8 text-center shadow-brand-sm backdrop-blur-sm transition-all duration-500 ease-emil hover:-translate-y-2 hover:border-brand-accent/40 hover:shadow-brand-lg"
+              initial={{ opacity: 0, y: 24, scale: 0.97 }}
+              whileInView={{ opacity: 1, y: 0, scale: 1 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ duration: 0.9, ease: EMIL, delay: index * 0.08 }}
             >
-              {member.image ? (
-                <div className="relative w-24 h-24 rounded-full overflow-hidden">
-                  <Image
-                    src={member.image}
-                    alt={member.name}
-                    fill
-                    className="object-cover"
-                  />
-                </div>
-              ) : (
-                <div className="w-24 h-24 rounded-full bg-brand-beige flex items-center justify-center">
-                  <User size={40} className="text-brand-grayMid" />
-                </div>
-              )}
+              {/* Top stripe */}
+              <span
+                aria-hidden
+                className="pointer-events-none absolute inset-x-0 top-0 h-[3px] bg-gradient-to-r from-brand-accent via-brand-accentDark to-brand-accent bg-[length:220%_100%] opacity-0 transition-opacity duration-500 ease-emil animate-gradient-drift group-hover:opacity-100"
+              />
 
-              <h3 className="mt-5 font-heading text-[1.5rem] font-semibold text-brand-text">
+              {/* Avatar */}
+              <div className="relative">
+                <span
+                  aria-hidden
+                  className="absolute inset-0 -m-1 rounded-full bg-gradient-to-br from-brand-accent/30 to-brand-accentDark/30 opacity-0 blur-md transition-opacity duration-500 ease-emil group-hover:opacity-100"
+                />
+                {member.image ? (
+                  <div className="relative h-28 w-28 overflow-hidden rounded-full ring-2 ring-brand-border/60 transition-all duration-500 ease-emil group-hover:ring-brand-accent/60">
+                    <Image src={member.image} alt={member.name} fill className="object-cover" />
+                  </div>
+                ) : (
+                  <div className="flex h-28 w-28 items-center justify-center rounded-full bg-brand-beige ring-2 ring-brand-border/60">
+                    <User size={42} className="text-brand-grayMid" />
+                  </div>
+                )}
+              </div>
+
+              <h3 className="mt-6 font-heading text-h3 font-semibold text-brand-text">
                 {member.name}
               </h3>
-              <p className="mt-1 font-body text-sm text-brand-grayMid">
-                {member.role}
-              </p>
+              <p className="mt-1 font-heading text-sm text-brand-grayMid">{member.role}</p>
             </motion.div>
           ))}
         </div>

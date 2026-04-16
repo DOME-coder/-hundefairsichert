@@ -26,7 +26,12 @@ export default function Home() {
         <ExtraLeistungen />
         <SectionDivider imageSrc="/images/hunde/vet-exam.jpg" alt="Hund beim Tierarzt" />
         <Versicherungsfall />
-        <SectionDivider imageSrc="/images/hunde/dog-leash.jpg" alt="Hund mit Leine" />
+        <SectionDivider
+          imageSrc="/images/hunde/dog-leash.jpg"
+          alt="Hund mit Leine"
+          focusY="15%"
+          heightClass="h-[520px] md:h-[680px]"
+        />
         <Wissenswertes />
         <FAQ />
         <CTA />
