@@ -32,8 +32,8 @@ export default function Header() {
       <header
         className={`fixed inset-x-0 top-0 z-50 flex h-[60px] items-center transition-all duration-500 ease-emil md:h-[72px] ${
           scrolled
-            ? 'translate-y-0 bg-white/75 backdrop-blur-2xl shadow-brand-sm border-b border-brand-border/60'
-            : '-translate-y-full'
+            ? 'bg-white/75 backdrop-blur-2xl shadow-brand-sm border-b border-brand-border/60'
+            : 'bg-transparent border-b border-transparent'
         }`}
       >
         <div className="mx-auto flex w-full max-w-content items-center justify-between px-6">
@@ -46,9 +46,9 @@ export default function Header() {
               alt="HundeFAIRsichert Logo"
               width={48}
               height={48}
-              className="h-12 w-12 brightness-0 transition-transform duration-500 ease-spring group-hover:-rotate-6 group-hover:scale-110"
+              className={`h-12 w-12 transition-all duration-500 ease-spring group-hover:-rotate-6 group-hover:scale-110 ${scrolled ? 'brightness-0' : 'brightness-100'}`}
             />
-            <span className="font-heading text-xl font-bold tracking-tight text-brand-text">
+            <span className={`font-heading text-xl font-bold tracking-tight transition-colors duration-500 ${scrolled ? 'text-brand-text' : 'text-white'}`}>
               {SITE.name}
             </span>
           </a>
@@ -59,7 +59,7 @@ export default function Header() {
               <a
                 key={link.href}
                 href={link.href}
-                className="link-underline relative whitespace-nowrap font-heading text-[0.9375rem] font-medium text-brand-text transition-colors duration-500 ease-emil hover:text-brand-accent"
+                className={`link-underline relative whitespace-nowrap font-heading text-[0.9375rem] font-medium transition-colors duration-500 ease-emil hover:text-brand-accent ${scrolled ? 'text-brand-text' : 'text-white/90'}`}
               >
                 {link.label}
               </a>
@@ -68,7 +68,7 @@ export default function Header() {
 
           {/* Mobile Hamburger */}
           <button
-            className="flex h-10 w-10 items-center justify-center rounded-full border border-brand-border/60 bg-white/70 text-brand-text shadow-brand-xs transition-all duration-500 ease-emil hover:border-brand-accent/60 hover:text-brand-accent md:hidden"
+            className={`flex h-10 w-10 items-center justify-center rounded-full border transition-all duration-500 ease-emil hover:border-brand-accent/60 hover:text-brand-accent md:hidden ${scrolled ? 'border-brand-border/60 bg-white/70 text-brand-text shadow-brand-xs' : 'border-white/30 bg-white/10 text-white'}`}
             onClick={() => setMobileOpen(true)}
             aria-label="Menü öffnen"
           >
@@ -77,8 +77,7 @@ export default function Header() {
         </div>
       </header>
 
-      {/* Spacer – only when header is visible */}
-      {scrolled && <div aria-hidden className="h-[60px] md:h-[72px]" />}
+      <div aria-hidden className="h-[60px] md:h-[72px]" />
 
       {/* Mobile Drawer */}
       <AnimatePresence>
