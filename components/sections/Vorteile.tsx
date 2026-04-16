@@ -1,13 +1,13 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { Syringe, ShieldPlus, SlidersHorizontal, Check } from 'lucide-react'
+import { Syringe, ShieldPlus, SlidersHorizontal, Check, type LucideIcon } from 'lucide-react'
 import { VORTEILE } from '@/lib/constants'
 import SectionHeader from '@/components/ui/SectionHeader'
 
 const EMIL: [number, number, number, number] = [0.32, 0.72, 0, 1]
 
-const ICONS: Record<string, React.ComponentType<{ size?: number; className?: string }>> = {
+const ICONS: Record<string, LucideIcon> = {
   'OP-Schutz': Syringe,
   Vollschutz: ShieldPlus,
   'Flexible Selbstbeteiligung': SlidersHorizontal,
