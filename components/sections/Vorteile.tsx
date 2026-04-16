@@ -1,17 +1,16 @@
 'use client'
 
-import Image from 'next/image'
 import { motion } from 'framer-motion'
-import { Check } from 'lucide-react'
+import { Syringe, ShieldPlus, SlidersHorizontal, Check } from 'lucide-react'
 import { VORTEILE } from '@/lib/constants'
 import SectionHeader from '@/components/ui/SectionHeader'
 
 const EMIL: [number, number, number, number] = [0.32, 0.72, 0, 1]
 
-const ICONS: Record<string, string> = {
-  'OP-Schutz': '/images/icons/stethoscope.jpg',
-  Vollschutz: '/images/icons/health.jpg',
-  'Flexible Selbstbeteiligung': '/images/icons/moneybag.jpg',
+const ICONS: Record<string, React.ComponentType<{ size?: number; className?: string }>> = {
+  'OP-Schutz': Syringe,
+  Vollschutz: ShieldPlus,
+  'Flexible Selbstbeteiligung': SlidersHorizontal,
 }
 
 export default function Vorteile() {
@@ -37,7 +36,7 @@ export default function Vorteile() {
 
         <div className="mt-14 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
           {VORTEILE.items.map((item, index) => {
-            const iconSrc = ICONS[item.title]
+            const Icon = ICONS[item.title]
 
             return (
               <motion.div
@@ -54,14 +53,11 @@ export default function Vorteile() {
                   className="pointer-events-none absolute inset-x-0 top-0 h-[3px] bg-gradient-to-r from-brand-accent via-brand-accentDark to-brand-accent bg-[length:220%_100%] animate-gradient-drift"
                 />
 
-                {iconSrc && (
+                {Icon && (
                   <div className="flex h-20 w-20 items-center justify-center rounded-2xl bg-brand-beige/70 ring-1 ring-brand-border/60 transition-all duration-500 ease-emil group-hover:bg-brand-accent/10 group-hover:ring-brand-accent/30 group-hover:shadow-brand-glow">
-                    <Image
-                      src={iconSrc}
-                      alt={item.title}
-                      width={56}
-                      height={56}
-                      className="h-14 w-14 rounded-xl object-cover transition-transform duration-500 ease-spring group-hover:-rotate-6 group-hover:scale-110"
+                    <Icon
+                      size={32}
+                      className="text-brand-accent transition-transform duration-500 ease-spring group-hover:-rotate-6 group-hover:scale-110"
                     />
                   </div>
                 )}

@@ -94,20 +94,20 @@ export default function Hero() {
       />
 
       {/* Content */}
-      <div className="relative z-10 mx-auto flex max-w-content flex-col items-center px-6 py-24 text-center">
+      <div className="relative z-10 mx-auto flex max-w-content flex-col items-center px-6 pb-24 pt-16 text-center">
         {/* Logo */}
         <motion.div
           initial={{ opacity: 0, scale: 0.9, y: 12, filter: 'blur(8px)' }}
           animate={{ opacity: 1, scale: 1, y: 0, filter: 'blur(0px)' }}
           transition={{ duration: 1, ease: EMIL }}
-          className="mb-8"
+          className="mb-4"
         >
           <Image
             src="/images/logo-white.png"
             alt="HundeFAIRsichert Logo"
             width={400}
             height={400}
-            className="h-64 w-64 drop-shadow-[0_8px_32px_rgba(0,0,0,0.4)] md:h-[22rem] md:w-[22rem] lg:h-[26rem] lg:w-[26rem]"
+            className="h-48 w-48 drop-shadow-[0_8px_32px_rgba(0,0,0,0.4)] md:h-64 md:w-64 lg:h-80 lg:w-80"
             priority
           />
         </motion.div>
@@ -123,7 +123,7 @@ export default function Hero() {
         </motion.h1>
 
         <motion.p
-          className="mt-6 max-w-2xl font-heading text-base leading-[1.75] text-white/90 drop-shadow-[0_2px_12px_rgba(0,0,0,0.6)] md:text-lg"
+          className="mt-4 max-w-2xl font-heading text-base leading-[1.75] text-white/90 drop-shadow-[0_2px_12px_rgba(0,0,0,0.6)] md:text-lg"
           initial={{ opacity: 0, y: 24, filter: 'blur(6px)' }}
           animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
           transition={{ duration: 0.8, ease: EMIL, delay: 0.65 }}
@@ -132,7 +132,7 @@ export default function Hero() {
         </motion.p>
 
         <motion.div
-          className="mt-10"
+          className="mt-8"
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, ease: EMIL, delay: 0.85 }}
