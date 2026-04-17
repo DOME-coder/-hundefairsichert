@@ -55,12 +55,7 @@ export default function VorteileLeistungen() {
                 />
 
                 <div className="flex flex-1 flex-col p-7">
-                  {/* Number badge */}
-                  <span className="eyebrow text-brand-accent">
-                    {String(index + 1).padStart(2, '0')}
-                  </span>
-
-                  <h3 className="mt-2 font-heading text-lg font-bold leading-tight text-brand-text">
+                  <h3 className="font-heading text-lg font-bold leading-tight text-brand-text">
                     {item.title}
                   </h3>
 
