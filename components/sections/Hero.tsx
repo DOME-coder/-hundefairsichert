@@ -9,8 +9,6 @@ import Button from '@/components/ui/Button'
 const whatsappNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER ?? ''
 const whatsappUrl = `https://wa.me/${whatsappNumber}`
 
-const EMIL: [number, number, number, number] = [0.32, 0.72, 0, 1]
-
 export default function Hero() {
   const videoRef = useRef<HTMLVideoElement>(null)
   const sectionRef = useRef<HTMLElement>(null)
@@ -43,8 +41,6 @@ export default function Hero() {
     return () => observer.disconnect()
   }, [])
 
-  const headlineWords = HERO.headline.split(' ')
-
   return (
     <section
       ref={sectionRef}
@@ -63,7 +59,6 @@ export default function Hero() {
           muted
           loop
           playsInline
-          poster="/images/hunde/hero-dog.jpg"
         >
           <source src="/images/videos/hero.mp4" type="video/mp4" />
           <source src="/images/videos/section.mp4" type="video/mp4" />
@@ -102,12 +97,7 @@ export default function Hero() {
       {/* Content */}
       <div className="relative z-10 mx-auto flex max-w-content flex-col items-center px-6 pb-[18vh] text-center">
         {/* Logo */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.9, y: 16, filter: 'blur(8px)' }}
-          animate={{ opacity: 1, scale: 1, y: 0, filter: 'blur(0px)' }}
-          transition={{ duration: 1, ease: EMIL }}
-          className="mb-2 md:mb-3"
-        >
+        <div className="mb-2 md:mb-3">
           <Image
             src="/images/logo-white.png"
             alt="HundeFAIRsichert Logo"
@@ -116,54 +106,24 @@ export default function Hero() {
             className="w-44 md:w-60 lg:w-[17rem] xl:w-80 h-auto drop-shadow-[0_4px_24px_rgba(0,0,0,0.45)]"
             priority
           />
-        </motion.div>
+        </div>
 
-        {/* Headline — word-by-word reveal */}
+        {/* Headline */}
         <h1 className="font-heading text-display font-bold text-white drop-shadow-[0_4px_24px_rgba(0,0,0,0.55)]">
-          {headlineWords.map((word, i) => (
-            <span
-              key={i}
-              className="inline-block overflow-hidden align-bottom"
-              style={{ paddingBottom: '0.1em' }}
-            >
-              <motion.span
-                className="inline-block"
-                initial={{ y: '100%', opacity: 0, filter: 'blur(8px)' }}
-                animate={{ y: 0, opacity: 1, filter: 'blur(0px)' }}
-                transition={{
-                  duration: 0.85,
-                  ease: EMIL,
-                  delay: 0.35 + i * 0.045,
-                }}
-              >
-                {word}
-                {i < headlineWords.length - 1 && '\u00A0'}
-              </motion.span>
-            </span>
-          ))}
+          {HERO.headline}
         </h1>
 
         {/* Subline */}
-        <motion.p
-          className="mt-3 max-w-2xl font-body text-sm leading-[1.7] text-white/90 drop-shadow-[0_2px_12px_rgba(0,0,0,0.5)] md:text-base"
-          initial={{ opacity: 0, y: 18 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.85, ease: EMIL, delay: 0.7 }}
-        >
+        <p className="mt-3 max-w-2xl font-body text-sm leading-[1.7] text-white/90 drop-shadow-[0_2px_12px_rgba(0,0,0,0.5)] md:text-base">
           {HERO.subline}
-        </motion.p>
+        </p>
 
         {/* CTA Button */}
-        <motion.div
-          className="mt-5 md:mt-6"
-          initial={{ opacity: 0, y: 18 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.85, ease: EMIL, delay: 0.85 }}
-        >
+        <div className="mt-5 md:mt-6">
           <Button href={whatsappUrl} className="px-8 py-3 md:px-10 md:py-3.5 uppercase tracking-wider">
             {HERO.cta}
           </Button>
-        </motion.div>
+        </div>
       </div>
 
       {/* Scroll indicator */}
