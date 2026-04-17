@@ -100,7 +100,7 @@ export default function Hero() {
       />
 
       {/* Content */}
-      <div className="relative z-10 mx-auto flex max-w-content flex-col items-center px-6 pt-6 pb-8 md:pt-8 md:pb-10 text-center">
+      <div className="relative z-10 mx-auto flex max-w-content flex-col items-center px-6 pt-2 pb-8 md:pt-4 md:pb-10 text-center">
         {/* Logo */}
         <motion.div
           initial={{ opacity: 0, scale: 0.9, y: 16, filter: 'blur(8px)' }}
@@ -111,9 +111,9 @@ export default function Hero() {
           <Image
             src="/images/logo-white.png"
             alt="HundeFAIRsichert Logo"
-            width={288}
-            height={288}
-            className="w-40 md:w-56 lg:w-64 xl:w-72 h-auto drop-shadow-[0_4px_24px_rgba(0,0,0,0.45)]"
+            width={320}
+            height={320}
+            className="w-44 md:w-60 lg:w-[17rem] xl:w-80 h-auto drop-shadow-[0_4px_24px_rgba(0,0,0,0.45)]"
             priority
           />
         </motion.div>
