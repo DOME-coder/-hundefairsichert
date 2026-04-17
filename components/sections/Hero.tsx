@@ -49,7 +49,7 @@ export default function Hero() {
     <section
       ref={sectionRef}
       id="hero"
-      className="relative flex min-h-[100dvh] items-start justify-center overflow-hidden"
+      className="relative flex min-h-[100dvh] items-center justify-center overflow-hidden"
     >
       {/* Video Background with parallax */}
       <motion.div
@@ -100,7 +100,7 @@ export default function Hero() {
       />
 
       {/* Content */}
-      <div className="relative z-10 mx-auto flex max-w-content flex-col items-center px-6 pt-[10vh] text-center">
+      <div className="relative z-10 mx-auto flex max-w-content flex-col items-center px-6 pb-[18vh] text-center">
         {/* Logo */}
         <motion.div
           initial={{ opacity: 0, scale: 0.9, y: 16, filter: 'blur(8px)' }}
